@@ -148,4 +148,5 @@ const ClosingArticle = styled.article`
 const ClosingContents = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
