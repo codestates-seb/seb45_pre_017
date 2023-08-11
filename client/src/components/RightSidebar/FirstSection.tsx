@@ -44,9 +44,6 @@ const Content2 = () => {
   );
 };
 
-const SectionContainer = styled.section`
-  width: 298px;
-  height: 400px;
-`;
+const SectionContainer = styled.section``;
 
 const ContentContainer = styled.div``;

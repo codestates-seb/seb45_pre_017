@@ -1,6 +1,6 @@
 import firstSectionImg from "../../asset/RightSidebarFirstSectionImg.png";
 
-export const firstSectionDummy: firstDummy = {
+export const firstSectionDummy: FirstDummy = {
   firstDummy: {
     title: "The Overflow Blog",
     content: [
@@ -38,12 +38,43 @@ export const firstSectionDummy: firstDummy = {
   },
 };
 
-interface firstSectionProps {
+export const secondSectionDummy: SecondSectionProps[] = [
+  {
+    img: firstSectionImg,
+    brandName: "AWS",
+    followers: "16k Members",
+    description:
+      "Amazon Web Services (AWS) is the world’s most comprehensive and broadly adopted...",
+  },
+  {
+    img: firstSectionImg,
+    brandName: "Microsoft Azure",
+    followers: "11k Members",
+    description:
+      "On-premises, hybrid, multicloud, or at the edge—build on your terms with best-in-...",
+  },
+  {
+    img: firstSectionImg,
+    brandName: "Twilio",
+    followers: "9k Members",
+    description:
+      "Twilio has democratized channels like voice, text, chat, video, and email by virtualizing the world’s communications infrastructure...",
+  },
+];
+
+interface FirstSectionProps {
   title: string;
   content: { img: string; text: string }[];
 }
 
-interface firstDummy {
-  firstDummy: firstSectionProps;
-  secondDummy: firstSectionProps;
+interface FirstDummy {
+  firstDummy: FirstSectionProps;
+  secondDummy: FirstSectionProps;
+}
+
+interface SecondSectionProps {
+  img: string;
+  brandName: string;
+  followers: string;
+  description: string;
 }
