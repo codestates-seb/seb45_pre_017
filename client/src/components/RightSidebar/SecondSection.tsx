@@ -1,14 +1,15 @@
 import React from "react";
+import { styled } from "styled-components";
 
 import SecondSectionTitle from "./SecondSectionTitle";
 import SecondSectionContent from "./SecondSectionContent";
-import { secondSectionDummy as contentDummyData } from "./DummyData";
+import { secondSectionDummy as dummyData } from "./DummyData";
 
 const SecondSection = () => {
   return (
-    <section>
+    <SectionContainer>
       <SecondSectionTitle />
-      {contentDummyData.map(item => (
+      {dummyData.map(item => (
         <SecondSectionContent
           key={item.brandName}
           img={item.img}
@@ -17,8 +18,13 @@ const SecondSection = () => {
           description={item.description}
         />
       ))}
-    </section>
+    </SectionContainer>
   );
 };
 
 export default SecondSection;
+
+const SectionContainer = styled.section`
+  border: 1px solid #d7d8d9;
+  border-radius: 0.2rem;
+`;

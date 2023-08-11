@@ -22,12 +22,12 @@ const Content1 = () => {
   const { title, content } = firstDummy;
 
   return (
-    <ContentContainer>
+    <div className="ContentContainer">
       <FirstSectionTitle title={title} />
       {content.map(item => (
         <FirstSectionContent key={item.text} img={item.img} text={item.text} />
       ))}
-    </ContentContainer>
+    </div>
   );
 };
 
@@ -35,15 +35,17 @@ const Content2 = () => {
   const { title, content } = secondDummy;
 
   return (
-    <ContentContainer>
+    <div className="ContentContainer">
       <FirstSectionTitle title={title} />
       {content.map(item => (
         <FirstSectionContent key={item.text} img={item.img} text={item.text} />
       ))}
-    </ContentContainer>
+    </div>
   );
 };
 
-const SectionContainer = styled.section``;
-
-const ContentContainer = styled.div``;
+const SectionContainer = styled.section`
+  background-color: #fdf7e1;
+  border: 1px solid #ece5cc;
+  border-radius: 0.2rem;
+`;
