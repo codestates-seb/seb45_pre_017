@@ -25,6 +25,8 @@ const SecondSection = () => {
 export default SecondSection;
 
 const SectionContainer = styled.section`
-  border: 1px solid #d7d8d9;
+  border-top: 1px solid #d7d8d9;
+  border-left: 1px solid #d7d8d9;
+  border-right: 1px solid #d7d8d9;
   border-radius: 0.2rem;
 `;

@@ -22,7 +22,7 @@ const Content1 = () => {
   const { title, content } = firstDummy;
 
   return (
-    <div className="ContentContainer">
+    <div className="contentContainer">
       <FirstSectionTitle title={title} />
       {content.map(item => (
         <FirstSectionContent key={item.text} img={item.img} text={item.text} />
@@ -35,7 +35,7 @@ const Content2 = () => {
   const { title, content } = secondDummy;
 
   return (
-    <div className="ContentContainer">
+    <div className="contentContainer">
       <FirstSectionTitle title={title} />
       {content.map(item => (
         <FirstSectionContent key={item.text} img={item.img} text={item.text} />
@@ -46,6 +46,8 @@ const Content2 = () => {
 
 const SectionContainer = styled.section`
   background-color: #fdf7e1;
-  border: 1px solid #ece5cc;
+  border-left: 1px solid #ece5cc;
+  border-right: 1px solid #ece5cc;
+  border-bottom: 1px solid #ece5cc;
   border-radius: 0.2rem;
 `;

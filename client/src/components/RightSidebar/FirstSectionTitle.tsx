@@ -21,6 +21,7 @@ const Title = styled.div`
   padding-right: 15px;
   padding-top: 12px;
   padding-bottom: 12px;
+  border-top: 1px solid #ece5cc;
   border-bottom: 1px solid #ece5cc;
   font-size: 12px;
   font-weight: bolder;
