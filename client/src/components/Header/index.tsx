@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/search.png";
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   return (
     <HeaderContainer>
       <Container>
@@ -18,10 +25,18 @@ const Header = () => {
         </InputWrap>
         <Nav>
           <li>
-            <LoginBtn>Login</LoginBtn>
+            {isLoggedIn ? (
+              <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+            ) : (
+              <LoginBtn onClick={handleLogin}>Login</LoginBtn>
+            )}
           </li>
           <li>
-            <SignBtn>SignUp</SignBtn>
+            {isLoggedIn ? (
+              <MyPageBtn>My Page</MyPageBtn>
+            ) : (
+              <SignBtn>Sign Up</SignBtn>
+            )}
           </li>
         </Nav>
       </Container>
@@ -47,19 +62,13 @@ const Container = styled.div`
   background: white;
   width: 80%;
   max-width: 100%;
-  margin: 0 25px px 0 25px;
   height: 52px;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  justify-content: center;
 `;
 
 export const LogoBox = styled.div`
   display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
   height: 100%;
   cursor: pointer;
@@ -102,9 +111,7 @@ export const InputStyles = styled.input`
 `;
 
 export const Nav = styled.ul`
-  list-style: none;
   display: flex;
-  margin-right: 5px;
   height: 100%;
   li {
     display: flex;
@@ -114,10 +121,6 @@ export const Nav = styled.ul`
     .active {
       display: none;
     }
-  }
-  img {
-    width: 33px;
-    height: 30px;
   }
 `;
 
@@ -129,6 +132,7 @@ export const LoginBtn = styled.button`
   background-color: #b0deff;
   color: #399cff;
   font-weight: normal;
+  width: 60px;
   &:hover {
     background-color: #73c4ff;
   }
@@ -142,6 +146,35 @@ export const SignBtn = styled.button`
   background-color: #3179ff;
   color: #ffffff;
   font-weight: normal;
+  width: 80px;
+  &:hover {
+    background-color: #0056f4;
+  }
+`;
+
+export const LogoutBtn = styled.button`
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid #1567ff;
+  border-radius: 3px;
+  background-color: #b0deff;
+  color: #399cff;
+  font-weight: normal;
+  width: 60px;
+  &:hover {
+    background-color: #73c4ff;
+  }
+`;
+
+export const MyPageBtn = styled.button`
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid #1567ff;
+  border-radius: 3px;
+  background-color: #3179ff;
+  color: #ffffff;
+  font-weight: normal;
+  width: 80px;
   &:hover {
     background-color: #0056f4;
   }
