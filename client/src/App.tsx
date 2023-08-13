@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
+      <Header />
       <Wrapper>개발환경 셋팅 완료</Wrapper>
       <FooterBox />
     </>
