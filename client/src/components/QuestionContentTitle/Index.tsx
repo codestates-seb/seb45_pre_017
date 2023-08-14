@@ -33,9 +33,9 @@ const TitleContainer = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  height: 25px;
+  height: 26px;
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 32px;
   margin-bottom: 16px;
   border-bottom: 1px solid #e4e5e6;
 `;
