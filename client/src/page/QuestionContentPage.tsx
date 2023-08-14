@@ -17,7 +17,7 @@ const QuestionContentPage = () => {
           <QuestionContent>
             <Main>
               <QuestionSection />
-              <AnswerSection />
+              {/* <AnswerSection /> */}
               <AnswerWriteForm />
             </Main>
             <RightSidebar />
@@ -46,4 +46,4 @@ const Main = styled.main`
 `;
 
 const QuestionSection = styled(ContentViewForm)``;
-const AnswerSection = styled(ContentViewForm)``;
+// const AnswerSection = styled(ContentViewForm)``;
