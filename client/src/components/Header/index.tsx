@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../../asset/Header-logo.png";
-import Search from "../../asset/search.png";
+import Search from "../../asset/Header-search.png";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
