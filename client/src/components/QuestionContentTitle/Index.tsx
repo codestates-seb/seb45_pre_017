@@ -12,7 +12,7 @@ const dummyInfo: string = "today";
 
 const QuestionContentTitle = () => {
   return (
-    <TotalContainer>
+    <div className="totalContainer">
       <TitleContainer>
         <Title>{duemmyTitle}</Title>
         <AskQuestionButton />
@@ -20,17 +20,11 @@ const QuestionContentTitle = () => {
       <InfoContainer>
         <AdditionalInfo infoName={dummyName} info={dummyInfo} />
       </InfoContainer>
-    </TotalContainer>
+    </div>
   );
 };
 
 export default QuestionContentTitle;
-
-const TotalContainer = styled.div`
-  /* 반응형으로 전체 너비가 계속 변화함 -> 수정 필요 */
-  width: 55vw;
-  height: 44.438px;
-`;
 
 const TitleContainer = styled.div`
   display: flex;
