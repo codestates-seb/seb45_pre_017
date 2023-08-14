@@ -1,11 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
 
-interface OwnProps {
-  infoName: string;
-  info: string;
-}
-
 const AdditionalInfo = (props: OwnProps) => {
   const { infoName, info } = props;
 
@@ -19,6 +14,13 @@ const AdditionalInfo = (props: OwnProps) => {
 
 export default AdditionalInfo;
 
+// type 선언
+interface OwnProps {
+  infoName: string;
+  info: string;
+}
+
+// component 생성
 const Container = styled.div`
   font-size: 13px;
   display: flex;

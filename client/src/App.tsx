@@ -2,15 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "./components/Footer";
 
-// 개발 테스트
-import QuestionInquiryTitle from "./components/QuestionInquiryTitle/Index";
-
 function App() {
   return (
     <>
-      <Wrapper>
-        <QuestionInquiryTitle />
-      </Wrapper>
+      <Wrapper></Wrapper>
       <FooterBox />
     </>
   );

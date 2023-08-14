@@ -1,10 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const QuestionInquiryPage = () => {
+const QuestionContentPage = () => {
   return <Body>{/* LeftSideBar Component */}</Body>;
 };
 
-export default QuestionInquiryPage;
+export default QuestionContentPage;
 
 const Body = styled.body``;

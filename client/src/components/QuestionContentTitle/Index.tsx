@@ -4,17 +4,17 @@ import { styled } from "styled-components";
 import AskQuestionButton from "../AskQuestionButton/Index";
 import AdditionalInfo from "./AdditionalInfo";
 
+// 추후 삭제할 dummyData
 const duemmyTitle: string =
   "PySnmpError: poll error While trying to run Robot Framework test with Snmp-library";
-
 const dummyName: string = "Asked";
 const dummyInfo: string = "today";
 
-const QuestionInquiryTitle = () => {
+const QuestionContentTitle = () => {
   return (
     <TotalContainer>
       <TitleContainer>
-        <QuestionTitle>{duemmyTitle}</QuestionTitle>
+        <Title>{duemmyTitle}</Title>
         <AskQuestionButton />
       </TitleContainer>
       <InfoContainer>
@@ -24,7 +24,7 @@ const QuestionInquiryTitle = () => {
   );
 };
 
-export default QuestionInquiryTitle;
+export default QuestionContentTitle;
 
 const TotalContainer = styled.div`
   /* 반응형으로 전체 너비가 계속 변화함 -> 수정 필요 */
@@ -46,7 +46,7 @@ const InfoContainer = styled.div`
   border-bottom: 1px solid #e4e5e6;
 `;
 
-const QuestionTitle = styled.h1`
+const Title = styled.h1`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
