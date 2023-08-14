@@ -7,11 +7,11 @@ const ContentVoteBar = () => {
   return (
     <Container>
       <VoteButton>
-        <ButtonContent arrowDirection="UP" />
+        <ButtonContent direction="UP" />
       </VoteButton>
       <VoteResultNum>{dummyResult}</VoteResultNum>
       <VoteButton>
-        <ButtonContent arrowDirection="Down" />
+        <ButtonContent direction="Down" />
       </VoteButton>
     </Container>
   );
@@ -21,14 +21,14 @@ export default ContentVoteBar;
 
 // type 정의
 interface ButtonContentProps {
-  arrowDirection: string;
+  direction: string;
 }
 
 // component 생성
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 44.781px;
+  padding-right: 16px;
 `;
 
 const VoteButton = styled.button`
@@ -53,8 +53,7 @@ const ButtonContent = styled.div<ButtonContentProps>`
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 8px solid black;
-  transform: ${props =>
-    props.arrowDirection === "UP" ? "none" : "rotate(180deg)"};
+  transform: ${props => (props.direction === "UP" ? "none" : "rotate(180deg)")};
 `;
 
 const VoteResultNum = styled.div`

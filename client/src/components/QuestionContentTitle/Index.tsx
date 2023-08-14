@@ -5,8 +5,8 @@ import AskQuestionButton from "../AskQuestionButton/Index";
 import AdditionalInfo from "./AdditionalInfo";
 
 // 추후 삭제할 dummyData
-const duemmyTitle: string =
-  "PySnmpError: poll error While trying to run Robot Framework test with Snmp-library";
+const dummyTitle: string =
+  "Pure CSS to control horizontal dividers between displayed elements";
 const dummyName: string = "Asked";
 const dummyInfo: string = "today";
 
@@ -14,7 +14,7 @@ const QuestionContentTitle = () => {
   return (
     <div className="totalContainer">
       <TitleContainer>
-        <Title>{duemmyTitle}</Title>
+        <Title>{dummyTitle}</Title>
         <AskQuestionButton />
       </TitleContainer>
       <InfoContainer>

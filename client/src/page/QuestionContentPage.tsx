@@ -3,47 +3,43 @@ import { styled } from "styled-components";
 
 import RightSidebar from "../components/RightSidebar/Index";
 import QuestionContentTitle from "../components/QuestionContentTitle/Index";
-import ContentViewForm from "../components/QuestionContent/ContentViewForm";
-import AnswerWriteForm from "../components/QuestionContent/AnswerWriteForm";
+import QuestionContent from "../components/QuestionContent/Index";
+
+const Title = QuestionContentTitle;
 
 const QuestionContentPage = () => {
   return (
     <body>
       {/* header 컴포넌트 */}
-      <ContentContainer>
+      <TotalContainer>
         {/* LeftSideBar Component */}
         <MainContainer>
-          <QuestionContentTitle />
-          <QuestionContent>
-            <Main>
-              <QuestionSection />
-              {/* <AnswerSection /> */}
-              <AnswerWriteForm />
-            </Main>
+          <Title />
+          <Content>
+            <MainContent>
+              <QuestionContent />
+            </MainContent>
             <RightSidebar />
-          </QuestionContent>
+          </Content>
         </MainContainer>
-      </ContentContainer>
+      </TotalContainer>
     </body>
   );
 };
 
 export default QuestionContentPage;
 
-const ContentContainer = styled.div``;
+const TotalContainer = styled.div``;
 
 const MainContainer = styled.div`
   width: 55vw;
 `;
 
-const QuestionContent = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-const Main = styled.main`
+const MainContent = styled.main`
   width: 70%;
 `;
-
-const QuestionSection = styled(ContentViewForm)``;
-// const AnswerSection = styled(ContentViewForm)``;
