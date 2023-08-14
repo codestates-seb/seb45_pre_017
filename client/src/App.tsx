@@ -1,15 +1,30 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import RightSidebar from "./components/RightSidebar/Index";
 
 function App() {
   return (
     <>
-      <Wrapper></Wrapper>
+      <GlobalStyles />
+      <Header />
+      <Wrapper>
+        <RightSidebar />
+      </Wrapper>
       <FooterBox />
     </>
   );
 }
+
+const GlobalStyles = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+`;
 
 const Wrapper = styled.div`
   height: auto;
