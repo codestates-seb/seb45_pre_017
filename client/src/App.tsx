@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Footer from "./components/Footer";
+import RightSidebar from "./components/RightSidebar/Index";
 
 function App() {
   return (
     <>
-      <Wrapper>개발환경 셋팅 완료</Wrapper>
+      <Wrapper>
+        <RightSidebar />
+      </Wrapper>
       <FooterBox />
     </>
   );
