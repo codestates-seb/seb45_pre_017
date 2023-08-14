@@ -16,12 +16,14 @@ const SecondSectionTitle = () => {
 export default SecondSectionTitle;
 
 const Container = styled.div`
-  width: 268px;
-  height: 19px;
-  padding-left: 14px;
-  padding-right: 14px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 19.5px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #f8f9f9;
   border-bottom: 1px solid #d7d8d9;
   display: flex;
