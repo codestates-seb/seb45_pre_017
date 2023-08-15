@@ -1,33 +1,35 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import { ContentCategory } from "../../models/ContentCategory";
 import DummyImg from "../../asset/ContentViewForm-DummyProfile.jpeg";
-
 const dummyDate: string = "Sep 3, 2008 at 14:31";
 const dummyName: string = "mikeymo";
 
-const WriterInfo = (props: ContentCategory) => {
+const WriterProfile = (props: OwnProps) => {
   const { contentCategory } = props;
 
-  const registrationCategory: string =
+  const category: string =
     contentCategory === "question" ? "asked" : "answered";
 
   return (
     <Container>
-      <RegistrationDate>
-        <span>{registrationCategory}</span>
-        <span>{dummyDate}</span>
-      </RegistrationDate>
-      <Profile>
+      <ContentInfo>
+        <span className="contentCategory">{category}</span>
+        <span className="registrationDate">{dummyDate}</span>
+      </ContentInfo>
+      <WriterInfo>
         <ProfileImg src={DummyImg} alt="Writer Profile Image" />
         <Nickname>{dummyName}</Nickname>
-      </Profile>
+      </WriterInfo>
     </Container>
   );
 };
 
-export default WriterInfo;
+export default WriterProfile;
+
+interface OwnProps {
+  contentCategory: string;
+}
 
 const Container = styled.div`
   width: 187px;
@@ -43,7 +45,7 @@ const Container = styled.div`
   gap: 3px;
 `;
 
-const RegistrationDate = styled.div`
+const ContentInfo = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -52,7 +54,7 @@ const RegistrationDate = styled.div`
   color: #6a737c;
 `;
 
-const Profile = styled.div`
+const WriterInfo = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2px;

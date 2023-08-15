@@ -1,24 +1,27 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import AnswerCounter from "./AnswerCouter";
 import ContentViewForm from "../ContentViewForm/Index";
 
 // dummyData
-import { dummyQuestion } from "./dummyQuestion";
+import { dummyAnswer } from "./dummyAnswer";
 
-const QuestionContent = () => {
+const AnswerContent = () => {
   return (
     <Container>
-      <ContentViewForm contentCategory="question" content={dummyQuestion} />
+      <AnswerCounter />
+      <ContentViewForm contentCategory="answer" content={dummyAnswer} />
     </Container>
   );
 };
 
-export default QuestionContent;
+export default AnswerContent;
 
 const Container = styled.section`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-right: 16px;
   border-bottom: 0.1px solid #cccccf;
+  gap: 10px;
 `;

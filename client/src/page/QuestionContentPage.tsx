@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import RightSidebar from "../components/RightSidebar/Index";
 import QuestionContentTitle from "../components/QuestionContentTitle/Index";
 import QuestionContent from "../components/QuestionContent/Index";
+import AnswerContent from "../components/AnswerContent/Index";
 
 const Title = QuestionContentTitle;
 
@@ -18,6 +19,7 @@ const QuestionContentPage = () => {
           <Content>
             <MainContent>
               <QuestionContent />
+              <AnswerContent />
             </MainContent>
             <RightSidebar />
           </Content>
@@ -41,5 +43,8 @@ const Content = styled.div`
 `;
 
 const MainContent = styled.main`
-  width: 70%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;

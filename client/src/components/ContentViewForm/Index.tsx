@@ -1,31 +1,49 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import ContentVoteBar from "./ContentVoteBar";
 import EditButton from "./EditButton";
-import WriterInfo from "./WriterInfo";
+import WriterProfile from "./WriterProfile";
+import Comment from "./Comment";
 
-import { ContentCategory } from "../../models/ContentCategory";
+import { ContentProps } from "../../models/ContentProps";
 
-// dummyData
-import { dummyQuestion } from "./dummyData";
+const ContentViewForm = (props: ContentProps) => {
+  const { contentCategory, content } = props;
 
-const ContentViewForm = (props: ContentCategory) => {
-  const { contentCategory } = props;
   return (
-    <Container>
-      <MainContent>{dummyQuestion}</MainContent>
-      <AssistantContent>
-        <EditButton />
-        <WriterInfo contentCategory={contentCategory} />
-      </AssistantContent>
-    </Container>
+    <TotalContainer>
+      <ContentVoteBar />
+      <MainContainer>
+        <MainContent>
+          {content.split("\n").map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </MainContent>
+        <AssistantContent>
+          <EditButton />
+          <WriterProfile contentCategory={contentCategory} />
+        </AssistantContent>
+        <Comment />
+      </MainContainer>
+    </TotalContainer>
   );
 };
 
 export default ContentViewForm;
 
-const Container = styled.div`
-  padding-right: 16px;
+const TotalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & p {
+    margin-bottom: 16.5px;
+  }
 `;
 
 const MainContent = styled.div`
