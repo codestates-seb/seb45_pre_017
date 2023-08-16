@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import AnswerCounter from "./AnswerCouter";
+import AnswerCounter from "./AnswerCounter";
 import ContentViewForm from "../ContentViewForm/Index";
 
 // dummyData

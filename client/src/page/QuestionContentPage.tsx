@@ -5,6 +5,7 @@ import RightSidebar from "../components/RightSidebar/Index";
 import QuestionContentTitle from "../components/QuestionContentTitle/Index";
 import QuestionContent from "../components/QuestionContent/Index";
 import AnswerContent from "../components/AnswerContent/Index";
+import AnswerWriteForm from "../components/AnswerWriteForm/Index";
 
 const Title = QuestionContentTitle;
 
@@ -20,6 +21,7 @@ const QuestionContentPage = () => {
             <MainContent>
               <QuestionContent />
               <AnswerContent />
+              <AnswerWriteForm />
             </MainContent>
             <RightSidebar />
           </Content>

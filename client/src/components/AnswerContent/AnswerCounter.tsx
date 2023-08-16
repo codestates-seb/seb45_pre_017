@@ -17,7 +17,8 @@ const AnswerCounter = () => {
 
 export default AnswerCounter;
 
-const Container = styled.div`
+const Container = styled.h2`
   margin-bottom: 8px;
   font-size: 19px;
+  font-weight: 400;
 `;

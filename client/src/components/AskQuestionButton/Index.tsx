@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const buttonText = "Ask Question";
+const buttonText: string = "Ask Question";
 
 const AskQuestionButton = () => {
   return (
