@@ -1,12 +1,16 @@
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  application:
+    name: demo
   datasource:
-    url: jdbc:h2:mem:test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: {url}
+    username: {유저 이름}
+    password: {비밀번호}
+  sql:
+    init:
+      platform: mysql
   jpa:
-    hibernate:
-      ddl-auto: create
     show-sql: true
+    #hibernate:
+    #  ddl-auto: create
 

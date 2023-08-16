@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,15 +22,12 @@ public class Comment {
     @Column(name = "comment_id")
     private int commentId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "content")
     private String content;
 
     @Column(nullable = false, name = "comment_date")
-    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    private LocalDateTime timestamp = LocalDateTime.now();
 
-    //Timestamp or
-    //@Column(nullable = false)
-    //private LocalDateTime createdAt = LocalDateTime.now();
 
     /* answer 클래스, user 클래스 작성된 뒤 fix
     @ManyToOne

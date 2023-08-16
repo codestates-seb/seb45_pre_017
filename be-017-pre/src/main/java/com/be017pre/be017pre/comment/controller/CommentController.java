@@ -3,6 +3,7 @@ package com.be017pre.be017pre.comment.controller;
 import com.be017pre.be017pre.comment.dto.CommentPatchDto;
 import com.be017pre.be017pre.comment.dto.CommentPostDto;
 import com.be017pre.be017pre.comment.dto.CommentResponseDto;
+
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.comment.mapper.CommentMapper;
 import com.be017pre.be017pre.comment.service.CommentService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,22 +41,26 @@ public class CommentController {
     }
     //댓글 수정 요청 전달 받는 메서드
     @PatchMapping("/{commentId}")
-    public ResponseEntity patchComment(@RequestBody CommentPatchDto commentPatchDto) {
+    public ResponseEntity patchComment(@PathVariable("commentId") int commentId,
+                                       @RequestBody CommentPatchDto commentPatchDto) {
 
-        Comment comment = commentMapper.commentPatchDtoToComment(commentPatchDto);
+        commentPatchDto.setCommentId(commentId);
+        commentPatchDto.setTimestamp(LocalDateTime.now());
+        Comment comment =
+                commentService.updateComment(commentMapper.commentPatchDtoToComment(commentPatchDto));
+        return new ResponseEntity<>(
+                commentMapper.commentToCommentResponseDto(comment),HttpStatus.OK);
 
-        //comment 수정
-        Comment response = commentService.updateComment(comment);
-        return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(response),HttpStatus.OK);
     }
+
     //댓글 삭제 요청 전달 받는 메서드
-    @DeleteMapping("{commentId}")
+    @DeleteMapping("/{commentId}")
     public void deleteComment(@PathVariable("commentId") int commentId) {
         //comment 삭제
         commentService.deleteComment(commentId);
     }
     //댓글 조회 요청 전달 받는 메서드
-    @GetMapping("{commentId}")
+    @GetMapping("/{commentId}")
     public ResponseEntity getComment(@PathVariable("commentId") int commentId) {
         //comment 1개 조회
         Comment response = commentService.findComment(commentId);

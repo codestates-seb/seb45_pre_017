@@ -2,10 +2,16 @@ package com.be017pre.be017pre.comment.service;
 
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.comment.repository.CommentRepository;
+import com.be017pre.be017pre.exception.BusinessLogicException;
+import com.be017pre.be017pre.exception.ExceptionCode;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 //비즈니스 로직을 처리하는 서비스 클래스
@@ -15,34 +21,42 @@ public class CommentService {
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
+
     public Comment createComment(Comment comment) {
 
-        //DB에 저장 후 돌려받는 것으로 추후 수정
-        Comment createdComment = comment;
-        return createdComment;
+        return commentRepository.save(comment);
     }
     public Comment updateComment(Comment comment) {
 
-        //DB 저장 후 돌려받는 것으로 추후 수정
-        Comment updatedComment = comment;
+        Comment findComment = findVerifiedComment(comment.getCommentId());
+        Optional.ofNullable(comment.getContent())
+                .ifPresent(content -> findComment.setContent(content));
+        findComment.setTimestamp(LocalDateTime.now());
+        Comment updatedComment = commentRepository.save(findComment);
         return updatedComment;
+
     }
+
     public Comment findComment(int commentId) {
 
-        //DB에 저장한 것으로 불러오는 것으로 추후 수정, 일단 더미 데이터
-        Comment comment = new Comment(commentId,"더미데이터 1",Timestamp.valueOf("2023-08-14 15:30:00"));
-        return  comment;
+        return findVerifiedComment(commentId);
     }
     public List<Comment> findComments() {
-
-        //DB에 저장한 것으로 불러오는 것으로 추후 수정, 일단 더미 데이터
-        List<Comment> comments = List.of(
-                new Comment(1,"더미데이터 1",Timestamp.valueOf("2023-08-14 15:30:00")),
-                new Comment(2,"더미데이터 2",Timestamp.valueOf("2023-08-14 15:31:00"))
-        );
-        return comments;
+        return commentRepository.findAll(Sort.by("commentId").descending());
     }
     public void deleteComment(int commentId) {
-        //DB내 삭제로 추후 수정
+
+        Comment findComment = findVerifiedComment(commentId);
+        commentRepository.delete(findComment);
     }
+
+    public Comment findVerifiedComment(int commentId) {
+        Optional<Comment> optionalComment =
+                commentRepository.findById(commentId);
+        Comment findComment =
+                optionalComment.orElseThrow(() ->
+                        new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
+        return findComment;
+    }
+
 }
