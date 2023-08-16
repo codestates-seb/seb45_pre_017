@@ -2,7 +2,8 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import RightSidebar from "./components/RightSidebar/Index";
+
+import QuestionContentPage from "./page/QuestionContentPage";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <Wrapper>
-        <RightSidebar />
+        <QuestionContentPage />
       </Wrapper>
       <FooterBox />
     </>

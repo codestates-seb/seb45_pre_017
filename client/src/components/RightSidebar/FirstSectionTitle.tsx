@@ -14,13 +14,16 @@ interface OwnProps {
 
 // component 생성
 const Title = styled.div`
+  display: flex;
+  align-items: center;
   background-color: #fbf3d4;
   color: #5e5e52;
+  width: auto;
   height: 15px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 18px;
+  padding-bottom: 18px;
   border-top: 1px solid #ece5cc;
   border-bottom: 1px solid #ece5cc;
   font-size: 12px;
