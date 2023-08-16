@@ -1,4 +1,4 @@
-package com.be017pre.be017pre.exception;
+package com.be017pre.be017pre.comment.exception;
 
 import lombok.Getter;
 

@@ -2,16 +2,13 @@ package com.be017pre.be017pre.comment.service;
 
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.comment.repository.CommentRepository;
-import com.be017pre.be017pre.exception.BusinessLogicException;
-import com.be017pre.be017pre.exception.ExceptionCode;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.be017pre.be017pre.comment.exception.BusinessLogicException;
+import com.be017pre.be017pre.comment.exception.ExceptionCode;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 //비즈니스 로직을 처리하는 서비스 클래스
