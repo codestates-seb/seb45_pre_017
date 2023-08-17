@@ -70,7 +70,7 @@ const Posts = styled.section`
 `;
 
 const TitleSection = styled.section`
-  padding: 20px 10px 10px 10px;
+  padding: 0px 10px 10px 10px;
 
   display: flex;
   flex-direction: row;
