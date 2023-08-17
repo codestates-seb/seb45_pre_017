@@ -1,16 +1,16 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import { mainData } from "./DummyData";
-import Post from "./Post";
-import AskQuestionButton from "../AskQuestionButton/Index";
-import LeftSidebar from "../LeftSidebar";
-import RightSidebar from "../RightSidebar/Index";
+import { mainData } from "../components/PostList/DummyData";
+import Post from "../components/PostList/Index";
+import AskQuestionButton from "../components/AskQuestionButton/Index";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar/Index";
 
 const title = "Top Questions";
 const filter = ["Interesting", "Bountied", "Hot", "Week", "Month"];
 
-const Main = () => {
+const Mainpage = () => {
   return (
     <>
       <MainContainer>
@@ -30,11 +30,13 @@ const Main = () => {
                 ))}
               </FilterButtons>
             </FilterSection>
-            {mainData.map(d => (
-              <>
-                <Post Data={d} />
-              </>
-            ))}
+            <div className="postList">
+              {mainData.map(d => (
+                <>
+                  <Post Data={d} />
+                </>
+              ))}
+            </div>
           </Posts>
           <RightSidebar />
         </ContentsSection>
@@ -43,7 +45,7 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Mainpage;
 
 const MainContainer = styled.div`
   width: 80%;
@@ -70,7 +72,7 @@ const Posts = styled.section`
 `;
 
 const TitleSection = styled.section`
-  padding: 20px 10px 10px 10px;
+  padding: 0px 10px 10px 10px;
 
   display: flex;
   flex-direction: row;

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Main from "./components/Main/Index";
+import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Header />
         <Wrapper>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Mainpage />} />
             <Route path="/page/1" element={<QuestionContentPage />} />
           </Routes>
         </Wrapper>
