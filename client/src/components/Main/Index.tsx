@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import { mainData } from "./DummyData";
 import Post from "./Post";
 import AskQuestionButton from "../AskQuestionButton/Index";
+import LeftSidebar from "../LeftSidebar";
 import RightSidebar from "../RightSidebar/Index";
 
 const title = "Top Questions";
@@ -13,6 +14,7 @@ const Main = () => {
   return (
     <>
       <MainContainer>
+        <LeftSidebar />
         <Posts>
           <TitleSection>
             <Title>{title}</Title>
@@ -42,14 +44,14 @@ const Main = () => {
 export default Main;
 
 const MainContainer = styled.div`
-  /* max-width: 80vw; */
+  width: 80%;
 
   display: flex;
   flex-direction: row;
 `;
 
 const Posts = styled.section`
-  width: 70%;
+  width: 80%;
 
   margin-right: 20px;
 
