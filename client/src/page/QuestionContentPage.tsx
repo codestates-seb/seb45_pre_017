@@ -1,6 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import Header from "../components/Header";
+import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar/Index";
 import QuestionContentTitle from "../components/QuestionContentTitle/Index";
 import QuestionContent from "../components/QuestionContent/Index";
@@ -11,10 +13,10 @@ const Title = QuestionContentTitle;
 
 const QuestionContentPage = () => {
   return (
-    <body>
-      {/* header 컴포넌트 */}
+    <Body>
+      <Header />
       <TotalContainer>
-        {/* LeftSideBar Component */}
+        <LeftSidebar />
         <MainContainer>
           <Title />
           <Content>
@@ -27,16 +29,27 @@ const QuestionContentPage = () => {
           </Content>
         </MainContainer>
       </TotalContainer>
-    </body>
+    </Body>
   );
 };
 
 export default QuestionContentPage;
 
-const TotalContainer = styled.div``;
+const Body = styled.body`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TotalContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+`;
 
 const MainContainer = styled.div`
-  width: 55vw;
+  padding: 24px;
 `;
 
 const Content = styled.div`

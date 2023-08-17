@@ -1,17 +1,13 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
-import LeftSidebar from "./components/LeftSidebar";
 import QuestionContentPage from "./page/QuestionContentPage";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
       <Wrapper>
-        <LeftSidebar />
         <QuestionContentPage />
       </Wrapper>
       <FooterBox />
