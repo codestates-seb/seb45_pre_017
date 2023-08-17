@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import QuestionContentPage from "./page/QuestionContentPage";
 
@@ -7,6 +9,7 @@ function App() {
   return (
     <>
       <GlobalStyles />
+      <Header />
       <Wrapper>
         <QuestionContentPage />
       </Wrapper>

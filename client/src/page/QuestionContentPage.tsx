@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import Header from "../components/Header";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar/Index";
 import QuestionContentTitle from "../components/QuestionContentTitle/Index";
@@ -14,7 +13,6 @@ const Title = QuestionContentTitle;
 const QuestionContentPage = () => {
   return (
     <Body>
-      <Header />
       <TotalContainer>
         <LeftSidebar />
         <MainContainer>
