@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: {url}
+    username: {유저 이름}
+    password: {비밀번호}
+  sql:
+    init:
+      platform: mysql
+  jpa:
+    show-sql: true
+    #hibernate:
+    #  ddl-auto: create
+
