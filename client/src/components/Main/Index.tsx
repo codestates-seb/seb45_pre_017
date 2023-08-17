@@ -15,27 +15,29 @@ const Main = () => {
     <>
       <MainContainer>
         <LeftSidebar />
-        <Posts>
-          <TitleSection>
-            <Title>{title}</Title>
-            <AskQuestionButton />
-          </TitleSection>
-          <FilterSection>
-            <FilterButtons>
-              {filter.map((f: string) => (
-                <>
-                  <FilterButton filter={f}>{f}</FilterButton>
-                </>
-              ))}
-            </FilterButtons>
-          </FilterSection>
-          {mainData.map(d => (
-            <>
-              <Post Data={d} />
-            </>
-          ))}
-        </Posts>
-        <RightSidebar />
+        <ContentsSection>
+          <Posts>
+            <TitleSection>
+              <Title>{title}</Title>
+              <AskQuestionButton />
+            </TitleSection>
+            <FilterSection>
+              <FilterButtons>
+                {filter.map((f: string) => (
+                  <>
+                    <FilterButton filter={f}>{f}</FilterButton>
+                  </>
+                ))}
+              </FilterButtons>
+            </FilterSection>
+            {mainData.map(d => (
+              <>
+                <Post Data={d} />
+              </>
+            ))}
+          </Posts>
+          <RightSidebar />
+        </ContentsSection>
       </MainContainer>
     </>
   );
@@ -45,6 +47,14 @@ export default Main;
 
 const MainContainer = styled.div`
   width: 80%;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+const ContentsSection = styled.section`
+  width: 100%;
+  margin: 20px 0px 20px 0px;
 
   display: flex;
   flex-direction: row;
