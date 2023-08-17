@@ -1,19 +1,26 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <Header />
-      <Wrapper>
-        <QuestionContentPage />
-      </Wrapper>
-      <FooterBox />
+      <Router>
+        <GlobalStyles />
+        <Header />
+        <Wrapper>
+          <Routes>
+            <Route path="/" element={<Mainpage />} />
+            <Route path="/page/1" element={<QuestionContentPage />} />
+          </Routes>
+        </Wrapper>
+        <FooterBox />
+      </Router>
     </>
   );
 }
@@ -29,7 +36,11 @@ const GlobalStyles = createGlobalStyle`
 
 const Wrapper = styled.div`
   position: relative; /* Added position */
+
+  width: 100vw;
+
   display: flex;
+  justify-content: center;
 `;
 
 const FooterBox = styled(Footer)`
