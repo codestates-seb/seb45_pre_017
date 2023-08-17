@@ -2,8 +2,8 @@ package com.be017pre.be017pre.comment.service;
 
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.comment.repository.CommentRepository;
-import com.be017pre.be017pre.comment.exception.BusinessLogicException;
-import com.be017pre.be017pre.comment.exception.ExceptionCode;
+import com.be017pre.be017pre.exception.BusinessLogicException;
+import com.be017pre.be017pre.exception.ExceptionCode;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;

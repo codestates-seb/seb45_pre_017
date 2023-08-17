@@ -1,9 +1,10 @@
-package com.be017pre.be017pre.comment.exception;
+package com.be017pre.be017pre.exception;
 
 import lombok.Getter;
 
 public enum ExceptionCode {
-    COMMENT_NOT_FOUND(404, "Comment not found");
+    COMMENT_NOT_FOUND(404, "Comment not found"),
+    ANSWER_NOT_FOUND(404, "Comment not found" );
 
     @Getter
     private int status;
