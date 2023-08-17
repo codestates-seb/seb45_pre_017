@@ -28,7 +28,7 @@ public class CommentService {
         Comment findComment = findVerifiedComment(comment.getCommentId());
         Optional.ofNullable(comment.getContent())
                 .ifPresent(content -> findComment.setContent(content));
-        findComment.setTimestamp(LocalDateTime.now());
+        findComment.setCommentDate(LocalDateTime.now());
         Comment updatedComment = commentRepository.save(findComment);
         return updatedComment;
 

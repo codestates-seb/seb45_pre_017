@@ -45,7 +45,7 @@ public class CommentController {
                                        @RequestBody CommentPatchDto commentPatchDto) {
 
         commentPatchDto.setCommentId(commentId);
-        commentPatchDto.setTimestamp(LocalDateTime.now());
+        commentPatchDto.setCommentDate(LocalDateTime.now());
         Comment comment =
                 commentService.updateComment(commentMapper.commentPatchDtoToComment(commentPatchDto));
         return new ResponseEntity<>(

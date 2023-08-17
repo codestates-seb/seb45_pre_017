@@ -15,13 +15,13 @@ public class CommentPostDto {
     //private int userId;
     @NotNull
     private String content;
-    private LocalDateTime timestamp;
+    private LocalDateTime commentDate;
     //public CommentPostDto(int commentId, int answerId, int userId, String content) {
     public CommentPostDto(int commentId, String content) {
         this.commentId = commentId;
         //this.answerId = answerId;
         //this.userId = userId;
         this.content = content;
-        this.timestamp = LocalDateTime.now();
+        this.commentDate = LocalDateTime.now();
     }
 }

@@ -26,7 +26,7 @@ public class Comment {
     private String content;
 
     @Column(nullable = false, name = "comment_date")
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime commentDate = LocalDateTime.now();
 
 
     /* answer 클래스, user 클래스 작성된 뒤 fix
