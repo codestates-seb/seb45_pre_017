@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import { mainData } from "./DummyData";
 import Post from "./Post";
@@ -11,12 +10,6 @@ const title = "Top Questions";
 const filter = ["Interesting", "Bountied", "Hot", "Week", "Month"];
 
 const Main = () => {
-  const navigate = useNavigate();
-
-  const pageNavigate = (pageId: number) => {
-    navigate(`/post/${pageId}`);
-  };
-
   return (
     <>
       <MainContainer>
@@ -36,7 +29,7 @@ const Main = () => {
           </FilterSection>
           {mainData.map(d => (
             <>
-              <Post Data={d} page={pageNavigate} />
+              <Post Data={d} />
             </>
           ))}
         </Posts>

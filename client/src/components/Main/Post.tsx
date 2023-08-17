@@ -1,14 +1,12 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import { styled } from "styled-components";
 
 const voteText = " votes";
 const answersText = " answers";
 
-const Post = (props: { Data: Props; page: any }) => {
-  const { id, nickname, userImage, title, votes, answers, tag, createdAd } =
+const Post = (props: { Data: Props }) => {
+  const { nickname, userImage, title, votes, answers, tag, createdAd } =
     props.Data;
-
-  const { page } = props;
 
   return (
     <>
@@ -24,7 +22,7 @@ const Post = (props: { Data: Props; page: any }) => {
           </Answer>
         </InfoSection>
         <ContentsSection>
-          <Title onClick={(e: MouseEvent) => page(e, id)}>{title}</Title>
+          <Title>{title}</Title>
           <Tags>
             {tag.map((t: string) => (
               <>
