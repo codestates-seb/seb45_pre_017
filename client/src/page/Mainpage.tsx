@@ -30,11 +30,13 @@ const Mainpage = () => {
                 ))}
               </FilterButtons>
             </FilterSection>
-            {mainData.map(d => (
-              <>
-                <Post Data={d} />
-              </>
-            ))}
+            <div className="postList">
+              {mainData.map(d => (
+                <>
+                  <Post Data={d} />
+                </>
+              ))}
+            </div>
           </Posts>
           <RightSidebar />
         </ContentsSection>
