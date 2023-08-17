@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main/Index";
-
+import LeftSidebar from "./components/LeftSidebar";
 import QuestionContentPage from "./page/QuestionContentPage";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <GlobalStyles />
       <Header />
       <Wrapper>
+        <LeftSidebar />
         <Main />
         <QuestionContentPage />
       </Wrapper>
@@ -30,9 +31,8 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Wrapper = styled.div`
-  height: auto;
-  min-height: 100%;
-  padding-bottom: 320px;
+  position: relative; /* Added position */
+  display: flex;
 `;
 
 const FooterBox = styled(Footer)`

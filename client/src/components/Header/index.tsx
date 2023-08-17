@@ -56,6 +56,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  z-index: 100;
 `;
 
 const Container = styled.div`
