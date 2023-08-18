@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import com.be017pre.be017pre.answer.entity.Answer;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,15 +30,11 @@ public class Comment {
     private LocalDateTime commentDate = LocalDateTime.now();
 
 
-    /* answer 클래스, user 클래스 작성된 뒤 fix
     @ManyToOne
-    @JoinColumn(nullable = false, name = "answer_id")
+    @JoinColumn(name = "answer_id")
     private Answer answer;
 
-    public void addAnswer(Answer answer) {
-        this.answer = answer;
-    }
-
+    /* user 클래스 완성된 뒤 fix
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
