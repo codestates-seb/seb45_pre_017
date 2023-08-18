@@ -1,7 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const buttonText = "Add a comment";
+const AddbuttonText: string = "Add a comment";
+const editButtonText: string = "Edit";
+const deleteButtonText: string = "Delete";
 
 // dummyData
 const dummyText: string =
@@ -15,7 +17,7 @@ const Comment = () => {
       <CommentList>
         <Content text={dummyText} writer={dummyWriter} date={dummyDate} />
       </CommentList>
-      <AddCommentButton>{buttonText}</AddCommentButton>
+      <AddCommentButton>{AddbuttonText}</AddCommentButton>
     </div>
   );
 };
@@ -27,8 +29,12 @@ const Content = (props: CommentProps) => {
   return (
     <Container>
       <Text>{text}</Text>
-      <Writer>- {writer}</Writer>
+      <Writer>{`- ${writer}`}</Writer>
       <Date>{date}</Date>
+      <AdditionalButton>
+        <EditButton>{editButtonText}</EditButton>
+        <DeleteButton>{deleteButtonText}</DeleteButton>
+      </AdditionalButton>
     </Container>
   );
 };
@@ -66,4 +72,23 @@ const AddCommentButton = styled.div`
   font-size: 13px;
   color: #838c95;
   padding-bottom: 16px;
+`;
+
+const AdditionalButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: #838c95;
+`;
+
+const EditButton = styled.div`
+  font-size: 13px;
+  color: #838c95;
+  margin-right: 8px;
+`;
+
+const DeleteButton = styled.div`
+  font-size: 13px;
+  color: #838c95;
+  margin-right: 8px;
 `;

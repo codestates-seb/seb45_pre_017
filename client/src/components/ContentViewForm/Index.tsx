@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 
 import ContentVoteBar from "./ContentVoteBar";
-import EditButton from "./EditButton";
+import AdditonalButton from "./AdditionalButton";
 import WriterProfile from "./WriterProfile";
 import Comment from "./Comment";
 
@@ -21,7 +21,7 @@ const ContentViewForm = (props: ContentProps) => {
           ))}
         </MainContent>
         <AssistantContent>
-          <EditButton />
+          <AdditonalButton />
           <WriterProfile contentCategory={contentCategory} />
         </AssistantContent>
         <Comment />
