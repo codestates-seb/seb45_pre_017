@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const buttonText = "Add a comment";
+const AddbuttonText: string = "Add a comment";
 const editButtonText: string = "Edit";
 const deleteButtonText: string = "Delete";
 
@@ -17,7 +17,7 @@ const Comment = () => {
       <CommentList>
         <Content text={dummyText} writer={dummyWriter} date={dummyDate} />
       </CommentList>
-      <AddCommentButton>{buttonText}</AddCommentButton>
+      <AddCommentButton>{AddbuttonText}</AddCommentButton>
     </div>
   );
 };
@@ -29,7 +29,7 @@ const Content = (props: CommentProps) => {
   return (
     <Container>
       <Text>{text}</Text>
-      <Writer>- {writer}</Writer>
+      <Writer>{`- ${writer}`}</Writer>
       <Date>{date}</Date>
       <AdditionalButton>
         <EditButton>{editButtonText}</EditButton>
