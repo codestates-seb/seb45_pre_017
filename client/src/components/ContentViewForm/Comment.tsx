@@ -2,6 +2,8 @@ import React from "react";
 import { styled } from "styled-components";
 
 const buttonText = "Add a comment";
+const editButtonText: string = "Edit";
+const deleteButtonText: string = "Delete";
 
 // dummyData
 const dummyText: string =
@@ -29,6 +31,10 @@ const Content = (props: CommentProps) => {
       <Text>{text}</Text>
       <Writer>- {writer}</Writer>
       <Date>{date}</Date>
+      <AdditionalButton>
+        <EditButton>{editButtonText}</EditButton>
+        <DeleteButton>{deleteButtonText}</DeleteButton>
+      </AdditionalButton>
     </Container>
   );
 };
@@ -66,4 +72,23 @@ const AddCommentButton = styled.div`
   font-size: 13px;
   color: #838c95;
   padding-bottom: 16px;
+`;
+
+const AdditionalButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: #838c95;
+`;
+
+const EditButton = styled.div`
+  font-size: 13px;
+  color: #838c95;
+  margin-right: 8px;
+`;
+
+const DeleteButton = styled.div`
+  font-size: 13px;
+  color: #838c95;
+  margin-right: 8px;
 `;
