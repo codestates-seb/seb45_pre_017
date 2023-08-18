@@ -3,9 +3,9 @@ spring:
     name: demo
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url:  jdbc:mysql://db-017-pre-be.cjdmzjfnvqzm.ap-northeast-2.rds.amazonaws.com:3306/test?
-    username:  admin
-    password:  12345678
+    url: {url}
+    username: {username}
+    password: {password}
   sql:
     init:
       platform: mysql
