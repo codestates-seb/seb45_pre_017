@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { useParams } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 
 import WriteForm from "./WriteForm";
@@ -7,12 +8,27 @@ import WriteForm from "./WriteForm";
 const title: string = "Your Answer";
 const buttonText: string = "Post Your Answer";
 
+// parameter 전달 테스트
+import usePostAnswer from "../../hooks/usePostAnswer";
+
 const AnswerWriteForm = () => {
+  const { votes } = useParams();
+  const [value, setValue] = useState<string>("");
+
+  const postMutation = usePostAnswer("votes", votes as string);
+
+  const postAnswerToSever = () => {
+    postMutation.mutate({ value: value });
+  };
+
   return (
     <Container>
       <Title>{title}</Title>
-      <WriteForm />
-      <PostAnswerButton>{buttonText}</PostAnswerButton>
+      {/* parameter 전달 테스트 */}
+      <WriteForm value={value} setValue={setValue} />
+      <PostAnswerButton onClick={postAnswerToSever}>
+        {buttonText}
+      </PostAnswerButton>
     </Container>
   );
 };
