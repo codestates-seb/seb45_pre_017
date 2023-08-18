@@ -1,6 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 
+// questionContentPage 연결
+import { Link } from "react-router-dom";
+
 const voteText = " votes";
 const answersText = " answers";
 
@@ -22,7 +25,9 @@ const Post = (props: { Data: Props }) => {
           </Answer>
         </InfoSection>
         <ContentsSection>
-          <Title>{title}</Title>
+          <Link to={`page/${votes}`}>
+            <Title>{title}</Title>
+          </Link>
           <Tags>
             {tag.map((t: string) => (
               <>
