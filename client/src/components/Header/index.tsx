@@ -4,9 +4,6 @@ import styled from "styled-components";
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/Header-search.png";
 
-// mainPage 연경
-import { Link } from "react-router-dom";
-
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogin = () => {

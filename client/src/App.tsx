@@ -18,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/:votes" element={<QuestionContentPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </Wrapper>
         <FooterBox />
