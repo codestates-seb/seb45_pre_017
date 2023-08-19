@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 public class PostController {
     private final PostService postService;
     private final PostMapper mapper;
@@ -24,7 +24,7 @@ public class PostController {
         this.postService = postService;
         this.mapper = mapper;    }
 
-    @PostMapping("/ask")
+    @PostMapping
     public ResponseEntity postPost(@Valid @RequestBody PostDto postDto){
 
         Post post = postService.createPost(mapper.postDtoToPost(postDto));
