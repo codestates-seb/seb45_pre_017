@@ -2,9 +2,8 @@ import React from "react";
 import { styled } from "styled-components";
 
 import ContentVoteBar from "./ContentVoteBar";
-import EditButton from "./EditButton";
+import AdditonalButton from "./AdditionalButton";
 import WriterProfile from "./WriterProfile";
-import Comment from "./Comment";
 
 import { ContentProps } from "../../models/ContentProps";
 
@@ -12,7 +11,7 @@ const ContentViewForm = (props: ContentProps) => {
   const { contentCategory, content } = props;
 
   return (
-    <TotalContainer>
+    <TotalContainer contentCategory={contentCategory}>
       <ContentVoteBar />
       <MainContainer>
         <MainContent>
@@ -21,10 +20,9 @@ const ContentViewForm = (props: ContentProps) => {
           ))}
         </MainContent>
         <AssistantContent>
-          <EditButton />
+          <AdditonalButton />
           <WriterProfile contentCategory={contentCategory} />
         </AssistantContent>
-        <Comment />
       </MainContainer>
     </TotalContainer>
   );
@@ -32,9 +30,14 @@ const ContentViewForm = (props: ContentProps) => {
 
 export default ContentViewForm;
 
-const TotalContainer = styled.div`
+interface ContainerProps {
+  contentCategory: string;
+}
+
+const TotalContainer = styled.div<ContainerProps>`
   display: flex;
   flex-direction: row;
+  margin-bottom: ${props => props.contentCategory === "question" && "8px"};
 `;
 
 const MainContainer = styled.div`

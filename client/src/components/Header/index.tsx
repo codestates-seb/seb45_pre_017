@@ -4,6 +4,9 @@ import styled from "styled-components";
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/Header-search.png";
 
+// mainPage 연경
+import { Link } from "react-router-dom";
+
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogin = () => {
@@ -15,9 +18,11 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Container>
-        <LogoBox>
-          <LogoImg src={Logo} alt="logo" />
-        </LogoBox>
+        <Link to="/">
+          <LogoBox>
+            <LogoImg src={Logo} alt="logo" />
+          </LogoBox>
+        </Link>
         <InputWrap>
           <SearchImg src={Search} alt="search" />
           <form>
@@ -79,7 +84,9 @@ export const LogoBox = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  height: 70%;
+  width: 150px;
+  height: 30px;
+  /* height: 70%; */
 `;
 
 export const InputWrap = styled.div`
