@@ -48,11 +48,11 @@ public class PostService {
         return findVerifiedPost(postId);
     }
 
-    /* 추후 수정
+    // 안될시 재수정
     public Page<Post> findPosts(int page, int size){
         return postRepository.findAll(PageRequest.of(page, size));
     }
-    */
+
     public void deletePost(int postId){
 
         Post findPost = findVerifiedPost(postId);

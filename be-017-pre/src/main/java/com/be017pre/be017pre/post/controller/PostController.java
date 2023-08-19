@@ -58,15 +58,15 @@ public class PostController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-/* 추후 수정
 
+    // 안될시 재수정
     @GetMapping("/")
     public ResponseEntity findPosts(@Positive @RequestParam(required=false) int page,
                                         @Positive @RequestParam int size){
-        Page<Post> pagepost = postService.findPosts(page - 1, size);
-        PageInfo pageInfo = new PageInfo(page, size, pagepost.getTotalElements(), pagepost.getTotalPages());
-        List<post> posts = pagePost.getContent();
-        List<postDto.Response> responses = mapper.postsTopostResponseDtos(posts);
+        Page<Post> pagePost = postService.findPosts(page - 1, size);
+        PageInfo pageInfo = new PageInfo(page, size, pagePost.getTotalElements(), pagePost.getTotalPages());
+        List<Post> posts = pagePost.getContent();
+        List<PostDto.Response> responses = mapper.postsToPostResponseDtos(posts);
 
 
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
@@ -80,7 +80,7 @@ public class PostController {
     }
 
 
-
+/* 추후 수정
     @GetMapping("/search")
     public ResponseEntity getPostsByTag(@RequestParam @Positive int page,
                                             @RequestParam @Positive int size,
