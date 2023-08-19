@@ -37,7 +37,7 @@ public class AnswerService {
     }
 
     public List<Answer> findAnswers() {
-        return answerRepository.findAll(Sort.by("answerId").descending());
+        return answerRepository.findAll(Sort.by("answerId").ascending());
     }
 
     public void deleteAnswer(int answerId) {

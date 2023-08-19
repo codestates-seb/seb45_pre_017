@@ -49,7 +49,7 @@ public class CommentService {
         return findVerifiedComment(commentId);
     }
     public List<Comment> findComments() {
-        return commentRepository.findAll(Sort.by("commentId").descending());
+        return commentRepository.findAll(Sort.by("commentId").ascending());
     }
     public void deleteComment(int commentId) {
 
