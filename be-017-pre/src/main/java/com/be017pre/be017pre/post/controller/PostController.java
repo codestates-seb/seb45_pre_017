@@ -1,10 +1,7 @@
 package com.be017pre.be017pre.post.controller;
 
-
-import com.be017pre.be017pre.dto.MultiResponseDto;
-import com.be017pre.be017pre.dto.PageInfo;
-import com.be017pre.be017pre.dto.SingleResponseDto;
 import com.be017pre.be017pre.post.dto.PostDto;
+import com.be017pre.be017pre.post.dto.PostPatchDto;
 import com.be017pre.be017pre.post.entity.Post;
 import com.be017pre.be017pre.post.mapper.PostMapper;
 import com.be017pre.be017pre.post.service.PostService;
@@ -13,57 +10,61 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
 
-@Validated
 @RestController
 @RequestMapping("/post")
 public class PostController {
     private final PostService postService;
-    private final postMapper mapper;
-    
+    private final PostMapper mapper;
+
     public PostController(PostService postService, PostMapper mapper) {
         this.postService = postService;
-        this.mapper = mapper;
-    }
-    
+        this.mapper = mapper;    }
+
     @PostMapping("/ask")
-    public ResponseEntity postPost(@Valid @RequestBody postDto.Post postPost){
-        
-        post post = postService.createpost(mapper.postPostDtoTopost(postPost));
-        PostDto.Response response = mapper.postToPostResponseDto(post);
+    public ResponseEntity postPost(@Valid @RequestBody PostDto postDto){
 
-        return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.CREATED);
+        Post post = postService.createPost(mapper.postDtoToPost(postDto));
+
+        return new ResponseEntity(mapper.postToPostResponseDto(post), HttpStatus.CREATED);
     }
-    
+
     @PatchMapping("{post-id}")
-    public ResponseEntity patchPost(@RequestBody PostDto.Patch patchDto,
-                                        @PathVariable("post-id")
-                                        @Positive int postId){
-        
-        Post response = postService.patchPost(mapper.postPatchDtoToPost(patchDto), postId);
-        PostDto.Response post = mapper.postToPostResponseDto(response);
+    public ResponseEntity patchPost(@Valid @RequestBody PostPatchDto postPatchDto,
+                                    @PathVariable("post-id") int postId) {
+        postPatchDto.setPostDate(LocalDateTime.now());
+        postPatchDto.setPostId(postId);
+        Post response = postService.patchPost(mapper.postPatchDtoToPost(postPatchDto));
 
-        return new ResponseEntity(new SingleResponseDto<>(post), HttpStatus.OK);
+        return new ResponseEntity(mapper.postToPostResponseDto(response), HttpStatus.OK);
 
     }
-    
-    @GetMapping("{post-id}") 
-    public ResponseEntity findPost(@PathVariable("post-id")
-                                       @Positive int postId){
-        post post = postService.findpost(postId);
-        postDto.Response response = mapper.postTopostResponseDto(post);
 
-        return new ResponseEntity(new SingleResponseDto<>(response), HttpStatus.OK);
+    @GetMapping("{post-id}")
+    public ResponseEntity findPost(@PathVariable("post-id") @Positive int postId){
+
+        Post post = postService.findPost(postId);
+
+        return new ResponseEntity(mapper.postToPostResponseDto(post), HttpStatus.OK);
     }
-    
+
+    @DeleteMapping("{post-id}")
+    public ResponseEntity deletePost(@PathVariable("post-id")
+                                     @Positive int postId){
+        postService.deletePost(postId);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+/* 추후 수정
+
     @GetMapping("/")
     public ResponseEntity findPosts(@Positive @RequestParam(required=false) int page,
                                         @Positive @RequestParam int size){
@@ -75,7 +76,7 @@ public class PostController {
 
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromPath("/api/posts/")
-                .queryParam("page", page)    
+                .queryParam("page", page)
                 .queryParam("size", size);
 
         return ResponseEntity.ok()
@@ -83,13 +84,8 @@ public class PostController {
                 .body(new MultiResponseDto<>(responses, pageInfo));
     }
 
-    @DeleteMapping("{post-id}")
-    public ResponseEntity deletePost(@PathVariable("post-id")
-                                         @Positive int postId){
-        postService.deletePost(postId);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-    
+
+
     @GetMapping("/search")
     public ResponseEntity getPostsByTag(@RequestParam @Positive int page,
                                             @RequestParam @Positive int size,
@@ -108,4 +104,5 @@ public class PostController {
         return ResponseEntity.ok()
                 .body(multiResponseDto);
     }
+*/
 }

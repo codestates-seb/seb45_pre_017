@@ -3,6 +3,7 @@ package com.be017pre.be017pre.exception;
 import lombok.Getter;
 
 public enum ExceptionCode {
+    POST_NOT_FOUND(404, "Post not found"),
     MEMBER_NOT_FOUND(404, "Member not found"),
     MEMBER_EMAIL_EXISTS(409, "Email already exists"),
     MEMBER_NAME_EXISTS(409, "Name already exists"),
@@ -11,6 +12,9 @@ public enum ExceptionCode {
     TAG_NOT_FOUND(404, "Tag not found"),
     ONLY_AUTHOR(403, "Access denied."),
     UNAUTHORIZED(401,  "Unauthorized");
+
+    @Getter
+    private int status;
 
     @Getter
     private String message;
