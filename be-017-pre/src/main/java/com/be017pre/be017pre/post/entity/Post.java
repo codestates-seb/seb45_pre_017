@@ -1,12 +1,15 @@
 package com.be017pre.be017pre.post.entity;
 
 
+import com.be017pre.be017pre.answer.entity.Answer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -27,8 +30,11 @@ public class Post {
     @Column(nullable = false, name = "content")
     private String content;
 
-    @Column(nullable = false, updatable = false, name = "post_date")
+    @Column(nullable = false, name = "post_date")
     private LocalDateTime postDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "post")
+    private List<Answer> answers = new ArrayList<>();
 
     /*
     @Column(nullable = false, name = "LAST_MODIFIED_AT")

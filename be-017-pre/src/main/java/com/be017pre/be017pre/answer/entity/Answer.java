@@ -1,6 +1,7 @@
 package com.be017pre.be017pre.answer.entity;
 
 import com.be017pre.be017pre.comment.entity.Comment;
+import com.be017pre.be017pre.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,13 +32,12 @@ public class Answer {
 
     @OneToMany(mappedBy = "answer")
     private List<Comment> comments = new ArrayList<>();
-    /*user 클래스, post 클래스 작성된 뒤 fix
+
     @ManyToOne
-    @JoinColumn(nullable = false, name = "post_id")
+    @JoinColumn(name = "post_id")
     private Post post;
-    public void addPost(Post post) {
-        this.post = post;
-    }
+
+    /*user 클래스 작성된 뒤 fix
 
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
