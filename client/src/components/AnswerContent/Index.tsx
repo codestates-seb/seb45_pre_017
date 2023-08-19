@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 
 import AnswerCounter from "./AnswerCounter";
 import ContentViewForm from "../ContentViewForm/Index";
+import AnswerComment from "../AnswerComment/Index";
 
 // dummyData
 import { dummyAnswer } from "./dummyAnswer";
@@ -12,6 +13,7 @@ const AnswerContent = () => {
     <Container>
       <AnswerCounter />
       <ContentViewForm contentCategory="answer" content={dummyAnswer} />
+      <AnswerComment />
     </Container>
   );
 };
