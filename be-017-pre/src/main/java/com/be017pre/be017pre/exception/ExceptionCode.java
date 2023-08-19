@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public enum ExceptionCode {
     COMMENT_NOT_FOUND(404, "Comment not found"),
-    ANSWER_NOT_FOUND(404, "Comment not found" );
+    ANSWER_NOT_FOUND(404, "Answer not found" );
 
     @Getter
     private int status;

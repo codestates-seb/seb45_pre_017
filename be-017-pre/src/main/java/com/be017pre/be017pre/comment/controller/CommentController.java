@@ -11,12 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("{answerId}/comments")
 
 public class CommentController {
 
@@ -28,21 +29,26 @@ public class CommentController {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
     }
+
     //댓글 등록 요청 전달 받는 메서드
     @PostMapping
-    public ResponseEntity postComment(@RequestBody CommentPostDto commentPostDto) {
+    public ResponseEntity postComment(@PathVariable("answerId") int answerId,
+                                      @Valid @RequestBody CommentPostDto commentPostDto) {
 
+        //commentPostDto.setCommentId(answerId);
         //매퍼로 commentPostDto 클래스 comment로 변환
         Comment comment = commentMapper.commetPostDtoToComment(commentPostDto);
 
         //comment 등록
-        Comment response = commentService.createComment(comment);
+        Comment response = commentService.createComment(comment,answerId);
+
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(response), HttpStatus.CREATED);
     }
+
     //댓글 수정 요청 전달 받는 메서드
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable("commentId") int commentId,
-                                       @RequestBody CommentPatchDto commentPatchDto) {
+                                       @Valid @RequestBody CommentPatchDto commentPatchDto) {
 
         commentPatchDto.setCommentId(commentId);
         commentPatchDto.setCommentDate(LocalDateTime.now());
@@ -59,18 +65,20 @@ public class CommentController {
         //comment 삭제
         commentService.deleteComment(commentId);
     }
+
     //댓글 조회 요청 전달 받는 메서드
     @GetMapping("/{commentId}")
     public ResponseEntity getComment(@PathVariable("commentId") int commentId) {
         //comment 1개 조회
         Comment response = commentService.findComment(commentId);
-      return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(response),HttpStatus.OK);
+        return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(response),HttpStatus.OK);
     }
+
     //댓글들 조회 요청 전달 받는 메서드
     @GetMapping
-    public ResponseEntity getComments() {
-        //comment 모두 조회
-        List<Comment> comments = commentService.findComments();
+    public ResponseEntity getComments(@PathVariable("answerId") int answerId) {
+        //해당 답변에 대한 comment 모두 조회
+        List<Comment> comments = commentService.findCommentsByAnswerId(answerId);
 
         List<CommentResponseDto> response =
                 comments.stream()
