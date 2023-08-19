@@ -3,14 +3,14 @@ package com.be017pre.be017pre.answer.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 public class AnswerPatchDto {
     private int answerId;
-    @NotNull
+    @NotBlank(message = "답변은 공백이 아니어야 합니다.")
     private String answerBody;
     private LocalDateTime answerDate;
 

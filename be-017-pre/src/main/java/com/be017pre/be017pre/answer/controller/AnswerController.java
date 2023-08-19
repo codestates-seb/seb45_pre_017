@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class AnswerController {
 
     //답변 등록
     @PostMapping
-    public ResponseEntity postAnswer(@RequestBody AnswerPostDto answerPostDto) {
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
 
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
         Answer response = answerService.createAnswer(answer);
@@ -39,7 +40,7 @@ public class AnswerController {
     //답변 수정
     @PatchMapping("/{answerId}")
     public ResponseEntity patchAnswer(@PathVariable("answerId") int answerId,
-                                      @RequestBody AnswerPatchDto answerPatchDto) {
+                                      @Valid @RequestBody AnswerPatchDto answerPatchDto) {
         answerPatchDto.setAnswerId(answerId);
         answerPatchDto.setAnswerDate(LocalDateTime.now());
         Answer answer = answerMapper.answerPatchDtoToAnswer(answerPatchDto);

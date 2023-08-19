@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class CommentController {
     //댓글 등록 요청 전달 받는 메서드
     @PostMapping
     public ResponseEntity postComment(@PathVariable("answerId") int answerId,
-                                      @RequestBody CommentPostDto commentPostDto) {
+                                      @Valid @RequestBody CommentPostDto commentPostDto) {
 
         //commentPostDto.setCommentId(answerId);
         //매퍼로 commentPostDto 클래스 comment로 변환
@@ -47,7 +48,7 @@ public class CommentController {
     //댓글 수정 요청 전달 받는 메서드
     @PatchMapping("/{commentId}")
     public ResponseEntity patchComment(@PathVariable("commentId") int commentId,
-                                       @RequestBody CommentPatchDto commentPatchDto) {
+                                       @Valid @RequestBody CommentPatchDto commentPatchDto) {
 
         commentPatchDto.setCommentId(commentId);
         commentPatchDto.setCommentDate(LocalDateTime.now());
