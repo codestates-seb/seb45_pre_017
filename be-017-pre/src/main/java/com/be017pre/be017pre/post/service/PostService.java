@@ -66,7 +66,7 @@ public class PostService {
     }
     */
     public Post findVerifiedPost(int postId){
-        Optional<Post> optional = Optional.ofNullable(postRepository.findByPostId(postId));
+        Optional<Post> optional = Optional.ofNullable(postRepository.findById(postId));
         return optional.orElseThrow(()->
                 new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
     }

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/answers")
+@RequestMapping("/posts/{postId}/answers")
 public class AnswerController {
 
     private final AnswerService answerService;
@@ -30,10 +30,11 @@ public class AnswerController {
 
     //답변 등록
     @PostMapping
-    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
+    public ResponseEntity postAnswer(@PathVariable("postId") int postId,
+                                     @Valid @RequestBody AnswerPostDto answerPostDto) {
 
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
-        Answer response = answerService.createAnswer(answer);
+        Answer response = answerService.createAnswer(answer,postId);
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(response),HttpStatus.CREATED);
     }
 
@@ -58,9 +59,9 @@ public class AnswerController {
 
     //전체 답변 조회
     @GetMapping
-    public ResponseEntity getAnswers() {
-
-        List<Answer> answers = answerService.findAnswers();
+    public ResponseEntity getAnswers(@PathVariable("postId") int postId) {
+        //해당 post에 대한 comment 모두 조회
+        List<Answer> answers = answerService.findAnswersByPostId(postId);
         List<AnswerResponseDto> response =
                 answers.stream()
                         .map(answer -> answerMapper.answerToAnswerResponseDto(answer))
@@ -74,3 +75,4 @@ public class AnswerController {
         answerService.deleteAnswer(answerId);
     }
 }
+

@@ -4,6 +4,8 @@ import com.be017pre.be017pre.answer.entity.Answer;
 import com.be017pre.be017pre.answer.repository.AnswerRepository;
 import com.be017pre.be017pre.exception.BusinessLogicException;
 import com.be017pre.be017pre.exception.ExceptionCode;
+import com.be017pre.be017pre.post.entity.Post;
+import com.be017pre.be017pre.post.repository.PostRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +16,19 @@ import java.util.Optional;
 @Service
 public class AnswerService {
     private final AnswerRepository answerRepository;
+    private final PostRepository postRepository;
 
-    public AnswerService(AnswerRepository answerRepository) {
+    public AnswerService(AnswerRepository answerRepository, PostRepository postRepository) {
         this.answerRepository = answerRepository;
+        this.postRepository = postRepository;
     }
 
-    public Answer createAnswer(Answer answer) {
+    public Answer createAnswer(Answer answer, int postId) {
+
+        Post post = postRepository.findById(postId);
+        //이 부분 추후 수정
+        // .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
+        answer.setPost(post);
         return answerRepository.save(answer);
     }
 
@@ -43,6 +52,10 @@ public class AnswerService {
     public void deleteAnswer(int answerId) {
         Answer findAnswer = findVerfiedAnswer(answerId);
         answerRepository.delete(findAnswer);
+    }
+
+    public List<Answer> findAnswersByPostId(int postId){
+        return answerRepository.findByPostPostId(postId);
     }
 
     public Answer findVerfiedAnswer(int answerId) {
