@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
+import SignUpPage from "./page/SignUpPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/1" element={<QuestionContentPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Routes>
         </Wrapper>
         <FooterBox />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/Header-search.png";
@@ -35,7 +36,9 @@ const Header = () => {
             {isLoggedIn ? (
               <MyPageBtn>My Page</MyPageBtn>
             ) : (
-              <SignBtn>Sign Up</SignBtn>
+              <Link to="/signup">
+                <SignBtn>Sign Up</SignBtn>
+              </Link>
             )}
           </li>
         </Nav>
