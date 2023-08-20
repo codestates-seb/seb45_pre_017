@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 import SignUpPage from "./page/SignUpPage";
@@ -19,9 +19,10 @@ function App() {
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/:votes" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/users/logout" element={<LogoutPage />} />
           </Routes>
         </Wrapper>
-        <FooterBox />
+        {/* <FooterBox /> */}
       </Router>
     </>
   );
@@ -45,9 +46,9 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const FooterBox = styled(Footer)`
-  position: relative;
-  transform: translateY(-100%);
-`;
+// const FooterBox = styled(Footer)`
+//   position: relative;
+//   transform: translateY(-100%);
+// `;
 
 export default App;

@@ -31,9 +31,15 @@ export default function RegisterBenefits(): JSX.Element {
       description: "Earn reputation and badges",
     },
   ];
+
+  const titleText = "Join the Stack Overflow community";
+  const captionText =
+    "Collaborate and share knowledge with a private group for FREE.\n" +
+    "Get Stack Overflow for Teams free for up to 50 users.";
+  const linkText = "Get Stack Overflow for Teams free for up to 50 users.";
   return (
     <Container>
-      <Title>Join the Stack Overflow community</Title>
+      <Title>{titleText}</Title>
       {benefits.map((el, idx) => {
         return (
           <Benefit key={idx}>
@@ -43,11 +49,9 @@ export default function RegisterBenefits(): JSX.Element {
         );
       })}
       <Caption>
-        Collaborate and share knowledge with a private group for FREE.
+        {captionText}
         <br />
-        <Link to="/">
-          Get Stack Overflow for Teams free for up to 50 users.
-        </Link>
+        <Link to="/">{linkText}</Link>
       </Caption>
     </Container>
   );
@@ -81,7 +85,7 @@ const Benefit = styled.div`
 
 const Caption = styled.div`
   margin-top: 2rem;
-  > Link {
+  > a {
     color: #0a95ff;
   }
 `;
