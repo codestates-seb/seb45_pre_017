@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
+// import { registerUser } from "./RegisterUser";
 
 const SignUpForm = () => {
   const [displayName, setDisplayName] = useState("");
@@ -19,13 +20,37 @@ const SignUpForm = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     validateName(displayName);
     validateEmail(email);
     validatePassword(password);
     PasswordConfirmation(confirmPassword, password);
+    if (
+      isNameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid
+    ) {
+      // 임시 테스트
+      const fakeUserData = {
+        username: displayName,
+        email: email,
+        password: password,
+      };
+      console.log("Simulated registration successful:", fakeUserData);
 
-    // 회원가입 로직 수행 기능 구현해야함
+      // API 연결 코드
+      // try {
+      //   const responseData = await registerUser(displayName, email, password);
+      //   // 회원가입 성공 시 처리
+      //   console.log("Registration successful:", responseData);
+      // } catch (error) {
+      //   // 회원가입 실패 시 처리
+      //   console.error("Registration failed:", error);
+      // }
+    } else {
+      console.log("Registration failed due to validation errors.");
+    }
   };
 
   //사용자 이름 유효성 검사
