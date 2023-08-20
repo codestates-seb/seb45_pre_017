@@ -19,7 +19,6 @@ function App() {
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/:votes" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/users/logout" element={<LogoutPage />} />
           </Routes>
         </Wrapper>
         {/* <FooterBox /> */}
