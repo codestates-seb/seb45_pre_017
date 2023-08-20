@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/Header-search.png";
-
-// mainPage 연경
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,7 +30,9 @@ const Header = () => {
         <Nav>
           <li>
             {isLoggedIn ? (
-              <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+              <Link to="users/logout">
+                <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
+              </Link>
             ) : (
               <LoginBtn onClick={handleLogin}>Login</LoginBtn>
             )}
