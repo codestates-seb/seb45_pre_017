@@ -6,6 +6,7 @@ import Post from "../components/PostList/Index";
 import AskQuestionButton from "../components/AskQuestionButton/Index";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar/Index";
+import Footer from "../components/Footer";
 
 const title = "Top Questions";
 const filter = ["Interesting", "Bountied", "Hot", "Week", "Month"];
@@ -14,32 +15,35 @@ const Mainpage = () => {
   return (
     <>
       <MainContainer>
-        <LeftSidebar />
-        <ContentsSection>
-          <Posts>
-            <TitleSection>
-              <Title>{title}</Title>
-              <AskQuestionButton />
-            </TitleSection>
-            <FilterSection>
-              <FilterButtons>
-                {filter.map((f: string) => (
+        <Body>
+          <LeftSidebar />
+          <ContentsSection>
+            <Posts>
+              <TitleSection>
+                <Title>{title}</Title>
+                <AskQuestionButton />
+              </TitleSection>
+              <FilterSection>
+                <FilterButtons>
+                  {filter.map((f: string) => (
+                    <>
+                      <FilterButton filter={f}>{f}</FilterButton>
+                    </>
+                  ))}
+                </FilterButtons>
+              </FilterSection>
+              <div className="postList">
+                {mainData.map(d => (
                   <>
-                    <FilterButton filter={f}>{f}</FilterButton>
+                    <Post Data={d} />
                   </>
                 ))}
-              </FilterButtons>
-            </FilterSection>
-            <div className="postList">
-              {mainData.map(d => (
-                <>
-                  <Post Data={d} />
-                </>
-              ))}
-            </div>
-          </Posts>
-          <RightSidebar />
-        </ContentsSection>
+              </div>
+            </Posts>
+            <RightSidebar />
+          </ContentsSection>
+        </Body>
+        <Footer />
       </MainContainer>
     </>
   );
@@ -49,7 +53,11 @@ export default Mainpage;
 
 const MainContainer = styled.div`
   width: 80%;
+  display: flex;
+  flex-direction: column;
+`;
 
+const Body = styled.div`
   display: flex;
   flex-direction: row;
 `;

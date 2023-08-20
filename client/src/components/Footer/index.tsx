@@ -84,6 +84,9 @@ const FooterContainer = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  position: relative;
+  transform: translateY(0%);
 `;
 
 const LogoBox = styled.div`
