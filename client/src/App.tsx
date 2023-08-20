@@ -5,6 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
+import LogoutPage from "./page/LogoutPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/:votes" element={<QuestionContentPage />} />
+            <Route path="/users/logout" element={<LogoutPage />} />
           </Routes>
         </Wrapper>
       </Router>
