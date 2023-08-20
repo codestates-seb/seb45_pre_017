@@ -5,6 +5,7 @@ import AskEditAdvice from "../components/AskEditAdvice/Index";
 import AskEditAside from "../components/AskEditAside/Index";
 import AskEditForm from "../components/AskEditForm/Index";
 import AskEditButton from "../components/AskEditButton/Index";
+import Footer from "../components/Footer";
 
 const pageTitle = "Ask a public question";
 
@@ -24,6 +25,7 @@ const AskEditPage = () => {
             </EditSection>
             <AskEditAside />
           </ContentsSection>
+          <Footer />
         </Body>
       </AskContainer>
     </>
