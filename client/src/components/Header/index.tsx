@@ -6,12 +6,15 @@ import Search from "../../asset/Header-search.png";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
+
   return (
     <HeaderContainer>
       <Container>
@@ -31,7 +34,9 @@ const Header = () => {
             {isLoggedIn ? (
               <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
             ) : (
-              <LoginBtn onClick={handleLogin}>Login</LoginBtn>
+              <Link to="/login">
+                <LoginBtn onClick={handleLogin}>Login</LoginBtn>
+              </Link>
             )}
           </li>
           <li>

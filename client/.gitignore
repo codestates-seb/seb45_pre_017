@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# TypeScript declaration files
+/node_modules/@types/
+
 # production
 /build
 
