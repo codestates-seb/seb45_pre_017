@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 
@@ -19,7 +18,6 @@ function App() {
             <Route path="/page/:votes" element={<QuestionContentPage />} />
           </Routes>
         </Wrapper>
-        <FooterBox />
       </Router>
     </>
   );
@@ -41,11 +39,6 @@ const Wrapper = styled.div`
 
   display: flex;
   justify-content: center;
-`;
-
-const FooterBox = styled(Footer)`
-  position: relative;
-  transform: translateY(-100%);
 `;
 
 export default App;
