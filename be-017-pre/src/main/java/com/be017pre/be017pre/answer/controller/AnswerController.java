@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts/{postId}/answers")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class AnswerController {
 
     private final AnswerService answerService;
