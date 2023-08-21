@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { login } from "./LoginUser";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoginValid, setIsLoginValid] = useState(true);
@@ -13,48 +16,39 @@ const LoginForm = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleLogin = e => {
+  const handleLogin = async e => {
     e.preventDefault(); // 기본 동작 막음
-    // 이메일이 비어있을 경우
-    if (email === "") {
-      setIsLoginValid(false);
-      setEmailErrorMessage("Email cannot be empty.");
-      setPasswordErrorMessage("");
-      setGeneralErrorMessage("");
-      return;
-    }
-
-    // 비밀번호가 비어있을 경우
-    if (password === "") {
-      setIsLoginValid(false);
-      setEmailErrorMessage("");
-      setPasswordErrorMessage("Password cannot be empty.");
-      setGeneralErrorMessage("");
-      return;
-    }
-
-    // 이메일 유효성 검사
-    if (!validateEmail(email)) {
-      setIsLoginValid(false);
-      setEmailErrorMessage("The email is not a valid email address.");
-      setPasswordErrorMessage("");
-      setGeneralErrorMessage("");
-      return;
-    }
-
-    // 실제 로그인 로직
-    if (email === "admin@example.com" && password === "password") {
-      setIsLoginValid(true);
-      setEmailErrorMessage("");
-      setPasswordErrorMessage("");
-      setGeneralErrorMessage("");
-      console.log("Login successful");
+    const loginSuccess = await login(email, password);
+    if (loginSuccess) {
+      navigate("/");
     } else {
       setIsLoginValid(false);
       setEmailErrorMessage("");
       setPasswordErrorMessage("");
-      setGeneralErrorMessage("The email or password is incorrect.");
-      console.log("Login failed");
+      setGeneralErrorMessage("");
+
+      // 이메일이 비어있을 경우
+      if (email === "") {
+        setEmailErrorMessage("Email cannot be empty.");
+        return;
+      }
+
+      // 비밀번호가 비어있을 경우
+      if (password === "") {
+        setPasswordErrorMessage("Password cannot be empty.");
+        return;
+      }
+
+      // 이메일 유효성 검사
+      if (!validateEmail(email)) {
+        setEmailErrorMessage("The email is not a valid email address.");
+        return;
+      }
+
+      // 이메일과 비밀번호가 모두 유효하지 않을 때 일반 에러 메시지 설정
+      if (!emailErrorMessage && !passwordErrorMessage) {
+        setGeneralErrorMessage("Invalid email or password.");
+      }
     }
   };
 
