@@ -1,6 +1,5 @@
 package com.be017pre.be017pre.post.controller;
 
-import com.be017pre.be017pre.dto.pageinfo;
 import com.be017pre.be017pre.post.dto.PostDto;
 import com.be017pre.be017pre.post.dto.PostPatchDto;
 import com.be017pre.be017pre.post.entity.Post;
@@ -13,11 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @RestController
 @RequestMapping("/posts")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 public class PostController {
     private final PostService postService;
     private final PostMapper mapper;
@@ -60,6 +60,8 @@ public class PostController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+
+/*
     @GetMapping("/")
     public ResponseEntity<Post> findPosts(@Positive @RequestParam int page,
                                           @Positive @RequestParam int size) {
@@ -68,12 +70,12 @@ public class PostController {
         PageInfo pageInfo = new PageInfo(page, size, pagePost.getTotalElements(), pagePost.getTotalPages());
 
         List<Post> posts = pagePost.getContent();
-        List<PostDto.Response> responses = mapper.postsToPostResponseDtos(Posts);
+        List<PostDto.Response> responses = mapper.postToPostResponseDto(posts);
 
         return new ResponseEntity(responses, HttpStatus.OK);
     }
 
-
+*/
 
 
 /* 추후 수정
