@@ -52,12 +52,16 @@ const Mainpage = () => {
 export default Mainpage;
 
 const MainContainer = styled.div`
-  width: 80%;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Body = styled.div`
+  width: 80%;
+
   display: flex;
   flex-direction: row;
 `;
