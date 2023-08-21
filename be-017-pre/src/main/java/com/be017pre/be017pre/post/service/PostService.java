@@ -5,6 +5,8 @@ import com.be017pre.be017pre.exception.BusinessLogicException;
 import com.be017pre.be017pre.exception.ExceptionCode;
 import com.be017pre.be017pre.post.entity.Post;
 import com.be017pre.be017pre.post.repository.PostRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -49,10 +51,12 @@ public class PostService {
     }
 
 
+    /*
     public Page<Post> findPosts(int page, int size){
 
         return postRepository.findAll(PageRequest.of(page, size));
     }
+    */
 
     public void deletePost(int postId){
 

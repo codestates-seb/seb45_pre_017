@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("{answerId}/comments")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 
 public class CommentController {
 
