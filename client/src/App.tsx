@@ -9,6 +9,7 @@ import SignUpPage from "./page/SignUpPage";
 import LoginPage from "./components/Login";
 import LogoutPage from "./page/LogoutPage";
 import AskEditPage from "./page/AskEditPage";
+import NoExistPage from "./page/NoExistPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/users/logout" element={<LogoutPage />} />
             <Route path="/questions/ask" element={<AskEditPage />} />
+            <Route path="/noExist" element={<NoExistPage />} />
           </Routes>
         </Wrapper>
       </Router>
