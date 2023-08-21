@@ -48,8 +48,9 @@ public class PostService {
         return findVerifiedPost(postId);
     }
 
-    // 안될시 재수정
+
     public Page<Post> findPosts(int page, int size){
+
         return postRepository.findAll(PageRequest.of(page, size));
     }
 

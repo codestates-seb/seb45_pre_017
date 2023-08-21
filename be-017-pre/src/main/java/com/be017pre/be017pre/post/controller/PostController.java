@@ -1,5 +1,6 @@
 package com.be017pre.be017pre.post.controller;
 
+import com.be017pre.be017pre.dto.pageinfo;
 import com.be017pre.be017pre.post.dto.PostDto;
 import com.be017pre.be017pre.post.dto.PostPatchDto;
 import com.be017pre.be017pre.post.entity.Post;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @RestController
@@ -58,26 +60,20 @@ public class PostController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-
-    // 안될시 재수정
     @GetMapping("/")
-    public ResponseEntity findPosts(@Positive @RequestParam(required=false) int page,
-                                        @Positive @RequestParam int size){
+    public ResponseEntity<Post> findPosts(@Positive @RequestParam int page,
+                                          @Positive @RequestParam int size) {
+
         Page<Post> pagePost = postService.findPosts(page - 1, size);
         PageInfo pageInfo = new PageInfo(page, size, pagePost.getTotalElements(), pagePost.getTotalPages());
+
         List<Post> posts = pagePost.getContent();
-        List<PostDto.Response> responses = mapper.postsToPostResponseDtos(posts);
+        List<PostDto.Response> responses = mapper.postsToPostResponseDtos(Posts);
 
-
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder
-                .fromPath("/api/posts/")
-                .queryParam("page", page)
-                .queryParam("size", size);
-
-        return ResponseEntity.ok()
-                .location(uriBuilder.build().toUri())
-                .body(new MultiResponseDto<>(responses, pageInfo));
+        return new ResponseEntity(responses, HttpStatus.OK);
     }
+
+
 
 
 /* 추후 수정
