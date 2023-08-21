@@ -44,14 +44,22 @@ const AskContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 `;
 
 const Body = styled.div`
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
 `;
 
 const TitleSection = styled.section`
+  width: 100%;
+  max-width: 1020px;
   height: 80px;
 `;
 
