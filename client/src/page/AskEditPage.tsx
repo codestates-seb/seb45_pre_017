@@ -1,5 +1,4 @@
 import React from "react";
-// import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import AskEditAdvice from "../components/AskEditAdvice/Index";
@@ -11,12 +10,6 @@ import Footer from "../components/Footer";
 const pageTitle = "Ask a public question";
 
 const AskEditPage = () => {
-  // const [postData, setPostData] = useState([]);
-
-  // const postingEdit = (e, data) => {
-  //  포스트가 백엔드로 전송 된 후, 저장 된 데이터의 postId의 상세페이지로 이동
-  // }
-
   return (
     <>
       <AskContainer>
