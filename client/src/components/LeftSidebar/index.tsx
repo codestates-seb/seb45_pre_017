@@ -16,7 +16,7 @@ const LeftSidebar = () => {
           Home
         </HomeContainer>
         <PublicContainer className="category">
-          PUBLIC
+          <ListNameContainer>PUBLIC</ListNameContainer>
           <ul>
             <li
               className={`list-question  ${
@@ -24,7 +24,9 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Questions")}
             >
-              <FaGlobeAmericas size={15} /> Questions
+              <TextContainer>
+                <FaGlobeAmericas size={15} /> Questions
+              </TextContainer>
             </li>
             <li
               className={`list-li  ${
@@ -32,8 +34,7 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Tags")}
             >
-              {" "}
-              Tags
+              <TextContainer> Tags</TextContainer>
             </li>
             <li
               className={`list-li ${
@@ -41,8 +42,7 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Users")}
             >
-              {" "}
-              Users
+              <TextContainer> Users</TextContainer>
             </li>
             <li
               className={`list-li ${
@@ -50,8 +50,7 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Companies")}
             >
-              {" "}
-              Companies
+              <TextContainer> Companies</TextContainer>
             </li>
           </ul>
         </PublicContainer>
@@ -95,6 +94,14 @@ const LeftSidebar = () => {
 
 export default LeftSidebar;
 
+const TextContainer = styled.div`
+  padding-left: 10px;
+`;
+
+const ListNameContainer = styled.div`
+  padding-left: 10px;
+`;
+
 const Sidebar = styled.div`
   float: left;
   display: flex;
@@ -122,7 +129,7 @@ const SidebarContainer = styled.div`
   .category {
     width: 100%;
     text-align: start;
-    padding: 8px 30px 20px 10px;
+    /* padding: 8px 30px 20px 10px; */
   }
   .category.selected,
   .list-li.selected,
@@ -143,6 +150,8 @@ const TextWrapper = styled.div`
 `;
 
 const HomeContainer = styled.div`
+  padding: 8px 30px 8px 10px;
+  margin-bottom: 10px;
   align-items: left;
   font-size: 13px;
   color: var(--black-900);
@@ -152,18 +161,25 @@ const HomeContainer = styled.div`
 `;
 
 const PublicContainer = styled.div`
+  /* padding-left: 10px; */
+
   ul {
+    padding-top: 5px;
+    padding-bottom: 5px;
     list-style: none;
-    padding: 8px 5px 8px 0;
+    width: 100%;
+    /* padding: 8px 5px 8px 0; */
 
     .list-li {
-      padding-left: 33px;
+      margin-top: 5px;
+      padding-left: 20px;
     }
   }
 
   li {
-    padding: 6px 0px;
-    padding-left: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    /* padding-left: 15px; */
     font-size: 13px;
 
     /* &.selected {
