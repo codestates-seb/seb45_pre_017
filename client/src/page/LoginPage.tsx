@@ -13,10 +13,9 @@ const LoginPage = () => {
 export default LoginPage;
 
 const Body = styled.body`
+  background-color: #f1f2f3;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  background-color: #f1f2f3;
+  justify-content: center;
+  height: 100vh;
 `;
