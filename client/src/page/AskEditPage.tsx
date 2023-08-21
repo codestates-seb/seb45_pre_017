@@ -1,4 +1,5 @@
 import React from "react";
+// import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import AskEditAdvice from "../components/AskEditAdvice/Index";
@@ -10,6 +11,12 @@ import Footer from "../components/Footer";
 const pageTitle = "Ask a public question";
 
 const AskEditPage = () => {
+  // const [postData, setPostData] = useState([]);
+
+  // const postingEdit = (e, data) => {
+  //  포스트가 백엔드로 전송 된 후, 저장 된 데이터의 postId의 상세페이지로 이동
+  // }
+
   return (
     <>
       <AskContainer>
@@ -44,14 +51,22 @@ const AskContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 `;
 
 const Body = styled.div`
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
 `;
 
 const TitleSection = styled.section`
+  width: 100%;
+  max-width: 1020px;
   height: 80px;
 `;
 

@@ -1,5 +1,7 @@
+// import React, { useState } from "react";
 import React from "react";
 import { styled } from "styled-components";
+// import axios from "axios";
 
 import { mainData } from "../components/PostList/DummyData";
 import Post from "../components/PostList/Index";
@@ -12,6 +14,16 @@ const title = "Top Questions";
 const filter = ["Interesting", "Bountied", "Hot", "Week", "Month"];
 
 const Mainpage = () => {
+  // 백엔드와 데이터 통신 되면 테스트 해볼 것
+  // const [data, setData] = useState();
+
+  // useEffect(() => {
+  //   axios
+  //     .get("주소")
+  //     .then((res: axiosData) => setData(res))
+  //     .catch(err => console.error(err));
+  // }, []);
+
   return (
     <>
       <MainContainer>
@@ -51,13 +63,19 @@ const Mainpage = () => {
 
 export default Mainpage;
 
+// interface axiosData {} 데이터 타입 입력 예정
+
 const MainContainer = styled.div`
-  width: 80%;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Body = styled.div`
+  width: 80%;
+
   display: flex;
   flex-direction: row;
 `;
