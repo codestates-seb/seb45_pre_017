@@ -2,6 +2,7 @@ package com.be017pre.be017pre.answer.entity;
 
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.post.entity.Post;
+import com.be017pre.be017pre.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,10 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     /*user 클래스 작성된 뒤 fix
 

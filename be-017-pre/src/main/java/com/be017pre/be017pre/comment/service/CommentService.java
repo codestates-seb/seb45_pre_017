@@ -6,6 +6,8 @@ import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.comment.repository.CommentRepository;
 import com.be017pre.be017pre.exception.BusinessLogicException;
 import com.be017pre.be017pre.exception.ExceptionCode;
+import com.be017pre.be017pre.user.entity.User;
+import com.be017pre.be017pre.user.repository.UserRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -17,16 +19,20 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final AnswerRepository answerRepository;
+    private final UserRepository userRepository;
 
-    public CommentService(CommentRepository commentRepository, AnswerRepository answerRepository) {
+    public CommentService(CommentRepository commentRepository, AnswerRepository answerRepository,
+                          UserRepository userRepository) {
         this.commentRepository = commentRepository;
         this.answerRepository = answerRepository;
+        this.userRepository = userRepository;
     }
-    public Comment createComment(Comment comment, int answerId) {
+    public Comment createComment(Comment comment, int answerId, int userId) {
         Answer answer = answerRepository.findById(answerId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
-
         comment.setAnswer(answer);
+        User user = userRepository.findById(userId);
+        comment.setUser(user);
         return commentRepository.save(comment);
     }
     /*public Comment createComment(Comment comment, int answerId) {

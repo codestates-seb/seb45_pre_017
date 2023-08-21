@@ -2,6 +2,7 @@ package com.be017pre.be017pre.post.entity;
 
 
 import com.be017pre.be017pre.answer.entity.Answer;
+import com.be017pre.be017pre.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +36,10 @@ public class Post {
 
     @OneToMany(mappedBy = "post")
     private List<Answer> answers = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     /*
     @Column(nullable = false, name = "LAST_MODIFIED_AT")

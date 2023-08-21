@@ -1,5 +1,6 @@
 package com.be017pre.be017pre.comment.entity;
 
+import com.be017pre.be017pre.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,10 +35,11 @@ public class Comment {
     @JoinColumn(name = "answer_id")
     private Answer answer;
 
-    /* user 클래스 완성된 뒤 fix
-    @JoinColumn(nullable = false, name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
+/*
     public void addUser(User user) {
         this.user = user;
     }

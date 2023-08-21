@@ -17,8 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("{answerId}/comments")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/{userId}/{answerId}/comments")
 
 public class CommentController {
 
@@ -33,7 +32,8 @@ public class CommentController {
 
     //댓글 등록 요청 전달 받는 메서드
     @PostMapping
-    public ResponseEntity postComment(@PathVariable("answerId") int answerId,
+    public ResponseEntity postComment(@PathVariable("userId") int userId,
+                                      @PathVariable("answerId") int answerId,
                                       @Valid @RequestBody CommentPostDto commentPostDto) {
 
         //commentPostDto.setCommentId(answerId);
@@ -41,7 +41,7 @@ public class CommentController {
         Comment comment = commentMapper.commetPostDtoToComment(commentPostDto);
 
         //comment 등록
-        Comment response = commentService.createComment(comment,answerId);
+        Comment response = commentService.createComment(comment,answerId,userId);
 
         return new ResponseEntity<>(commentMapper.commentToCommentResponseDto(response), HttpStatus.CREATED);
     }

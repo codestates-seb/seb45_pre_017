@@ -15,9 +15,7 @@ import java.time.LocalDateTime;
 
 
 @RestController
-@RequestMapping("/posts")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-
+@RequestMapping("{userId}/posts")
 public class PostController {
     private final PostService postService;
     private final PostMapper mapper;
@@ -27,9 +25,10 @@ public class PostController {
         this.mapper = mapper;    }
 
     @PostMapping
-    public ResponseEntity postPost(@Valid @RequestBody PostDto postDto){
+    public ResponseEntity postPost(@PathVariable("userId") int userId,
+                                    @Valid @RequestBody PostDto postDto){
 
-        Post post = postService.createPost(mapper.postDtoToPost(postDto));
+        Post post = postService.createPost(mapper.postDtoToPost(postDto),userId);
 
         return new ResponseEntity(mapper.postToPostResponseDto(post), HttpStatus.CREATED);
     }

@@ -6,6 +6,8 @@ import com.be017pre.be017pre.exception.BusinessLogicException;
 import com.be017pre.be017pre.exception.ExceptionCode;
 import com.be017pre.be017pre.post.entity.Post;
 import com.be017pre.be017pre.post.repository.PostRepository;
+import com.be017pre.be017pre.user.entity.User;
+import com.be017pre.be017pre.user.repository.UserRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +19,22 @@ import java.util.Optional;
 public class AnswerService {
     private final AnswerRepository answerRepository;
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public AnswerService(AnswerRepository answerRepository, PostRepository postRepository) {
+    public AnswerService(AnswerRepository answerRepository, PostRepository postRepository, UserRepository userRepository) {
         this.answerRepository = answerRepository;
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
-    public Answer createAnswer(Answer answer, int postId) {
+    public Answer createAnswer(Answer answer, int postId, int userId) {
 
         Post post = postRepository.findById(postId);
+        User user = userRepository.findById(userId);
         //이 부분 추후 수정
         // .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
         answer.setPost(post);
+        answer.setUser(user);
         return answerRepository.save(answer);
     }
 
