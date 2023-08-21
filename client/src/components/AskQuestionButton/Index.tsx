@@ -1,12 +1,15 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const buttonText: string = "Ask Question";
 
 const AskQuestionButton = () => {
   return (
     <div className="buttonContainer">
-      <AskButton>{buttonText}</AskButton>
+      <Link to={"/questions/ask"}>
+        <AskButton>{buttonText}</AskButton>
+      </Link>
     </div>
   );
 };

@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import Logo from "../../asset/Header-logo.png";
 import Search from "../../asset/Header-search.png";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
+
   return (
     <HeaderContainer>
       <Container>
@@ -34,14 +37,18 @@ const Header = () => {
                 <LogoutBtn onClick={handleLogout}>Logout</LogoutBtn>
               </Link>
             ) : (
-              <LoginBtn onClick={handleLogin}>Login</LoginBtn>
+              <Link to="/login">
+                <LoginBtn onClick={handleLogin}>Login</LoginBtn>
+              </Link>
             )}
           </li>
           <li>
             {isLoggedIn ? (
               <MyPageBtn>My Page</MyPageBtn>
             ) : (
-              <SignBtn>Sign Up</SignBtn>
+              <Link to="/signup">
+                <SignBtn>Sign Up</SignBtn>
+              </Link>
             )}
           </li>
         </Nav>

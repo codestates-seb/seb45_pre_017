@@ -8,6 +8,7 @@ import QuestionContentTitle from "../components/QuestionContentTitle/Index";
 import QuestionContent from "../components/QuestionContent/Index";
 import AnswerContent from "../components/AnswerContent/Index";
 import AnswerWriteForm from "../components/AnswerWriteForm/Index";
+import Footer from "../components/Footer";
 
 // 서버 통신 테스트 (1)
 import useGetContent from "../hooks/useGetContent";
@@ -30,8 +31,8 @@ const QuestionContentPage = () => {
   }
 
   return (
-    <Body>
-      <TotalContainer>
+    <TotalContainer>
+      <OveralContainer>
         <LeftSidebar />
         <MainContainer>
           {/* title 등 하부 컴포넌트에 parameter를 props로 전달
@@ -52,22 +53,22 @@ const QuestionContentPage = () => {
             <RightSidebar />
           </Content>
         </MainContainer>
-      </TotalContainer>
-    </Body>
+      </OveralContainer>
+      <Footer />
+    </TotalContainer>
   );
 };
 
 export default QuestionContentPage;
 
-// 추후 수정 필요
-const Body = styled.body`
+const TotalContainer = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const TotalContainer = styled.div`
+const OveralContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 80%;

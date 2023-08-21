@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const FooterContainer = styled.footer`
-  width: 100wv;
+  width: 100vw;
 
   padding: 25px;
 
