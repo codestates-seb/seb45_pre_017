@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import Header from "./components/Header";
-// import Footer from "./components/Footer";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 import SignUpPage from "./page/SignUpPage";
+import AskEditPage from "./page/AskEditPage";
 
 function App() {
   return (
@@ -19,9 +19,9 @@ function App() {
             <Route path="/" element={<Mainpage />} />
             <Route path="/page/:votes" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/questions/ask" element={<AskEditPage />} />
           </Routes>
         </Wrapper>
-        {/* <FooterBox /> */}
       </Router>
     </>
   );
@@ -44,10 +44,5 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-// const FooterBox = styled(Footer)`
-//   position: relative;
-//   transform: translateY(-100%);
-// `;
 
 export default App;
