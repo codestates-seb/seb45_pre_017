@@ -9,16 +9,13 @@ import java.time.LocalDateTime;
 @Setter
 public class CommentResponseDto {
     private int commentId;
-    //private int answerId;
-    //private int userId;
+
     @NotBlank(message = "댓글은 공백이 아니어야 합니다.")
     private String content;
     private LocalDateTime commentDate;
     public CommentResponseDto(int commentId, String content) {
-        //public CommentResponseDto(int commentId, int answerId, int userId, String content) {
+
         this.commentId = commentId;
-        //this.answerId = answerId;
-        //this.userId = userId;
         this.content = content;
         this.commentDate = LocalDateTime.now();
     }

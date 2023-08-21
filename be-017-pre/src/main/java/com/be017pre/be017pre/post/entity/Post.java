@@ -36,23 +36,6 @@ public class Post {
     @OneToMany(mappedBy = "post")
     private List<Answer> answers = new ArrayList<>();
 
-    /*
-    @Column(nullable = false, name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt = LocalDateTime.now();
-    */
-    /*
-    @Column(nullable = true)
-    private int vote;
-
-    @Column(nullable = true)
-    private String tag;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "POST_TAG_LIST", joinColumns = @JoinColumn(name = "POST_ID"))
-    @Column(nullable = true, name = "TAG_LIST")
-    private List<String> tags;
-
-    */
 
 
 }

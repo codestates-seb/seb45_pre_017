@@ -17,9 +17,6 @@ public class PostDto {
     private String content;
     private LocalDateTime postDate = LocalDateTime.now();
 
-    //private int memberId;
-    //private String tag;
-    //private List<String> tagList;
     public PostDto(int postId, String title, String content) {
         this.postId = postId;
         this.title = title;

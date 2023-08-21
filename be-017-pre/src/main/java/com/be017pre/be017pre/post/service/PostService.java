@@ -26,9 +26,6 @@ public class PostService {
 
     public Post createPost(Post post) {
 
-        //String tag = post.getTag();
-        //List<String> tagList = new ArrayList<>(Arrays.asList(tag.split("\\s*,\\s*")));
-        //post.setTags(tagList);
         return postRepository.save(post);
 
     }
@@ -40,8 +37,7 @@ public class PostService {
                 .ifPresent(title -> findPost.setTitle(title));
         Optional.ofNullable(post.getContent())
                 .ifPresent(content -> findPost.setContent(content));
-        //Optional.ofNullable(post.getTag())
-        //        .ifPresent(tag -> findPost.setTag(tag));
+
         findPost.setPostDate(LocalDateTime.now());
         return postRepository.save(findPost);
     }
@@ -64,12 +60,8 @@ public class PostService {
         postRepository.delete(findPost);
 
     }
-    /*
-    public Page<Post> findAllByTags(String tag, int page, int size){
-        Pageable pageable = PageRequest.of(page, size);
-        return  postRepository.findByTagContaining(tag, pageable);
-    }
-    */
+
+
     public Post findVerifiedPost(int postId){
         Optional<Post> optional = Optional.ofNullable(postRepository.findById(postId));
         return optional.orElseThrow(()->

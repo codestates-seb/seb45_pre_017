@@ -17,9 +17,6 @@ public class PostPatchDto {
     private String content;
     private LocalDateTime postDate;
 
-    //private int memberId;
-    //private String tag;
-    //private List<String> tagList;
 
     public PostPatchDto(int postId, String title, String content) {
         this.postId = postId;

@@ -15,11 +15,6 @@ public class PostResponseDto {
     @NotBlank(message = "내용을 입력하세요.")
     private String content;
     private LocalDateTime postDate;
-    //private String tag;
-    //private List<String> tags;
-    //private int vote;
-    //private int memberId;
-    //private LocalDateTime modifiedAt;
 
     public PostResponseDto(int postId, String title, String content) {
         this.postId = postId;
