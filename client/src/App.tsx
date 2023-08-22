@@ -6,8 +6,11 @@ import Header from "./components/Header";
 import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 import SignUpPage from "./page/SignUpPage";
+import LoginPage from "./components/Login";
 import LogoutPage from "./page/LogoutPage";
 import AskEditPage from "./page/AskEditPage";
+import AskModifyPage from "./page/AskModifyPage";
+import NoExistPage from "./page/NoExistPage";
 
 function App() {
   return (
@@ -20,8 +23,14 @@ function App() {
             <Route path="/" element={<Mainpage />} />
             <Route path="/posts/1" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/users/logout" element={<LogoutPage />} />
             <Route path="/questions/ask" element={<AskEditPage />} />
+            <Route
+              path="/questions/modify/:postId"
+              element={<AskModifyPage />}
+            />
+            <Route path="/noExist" element={<NoExistPage />} />
           </Routes>
         </Wrapper>
       </Router>
