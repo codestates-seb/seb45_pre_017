@@ -1,0 +1,28 @@
+package com.be017pre.be017pre.user.service;
+
+import com.be017pre.be017pre.user.entity.User;
+import com.be017pre.be017pre.user.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserRepository userRepository;  // Assuming you have a UserRepository
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByUserEmail(email);  // Fetch the user using the email
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getUserPw(), new ArrayList<>());
+    }
+
+}
