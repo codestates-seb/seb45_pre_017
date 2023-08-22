@@ -12,9 +12,9 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}
   sql:
     init:
-      platform: ${SPRING_SQL_INIT_PLATFORM}
+      platform: mysql
   jpa:
-    show-sql: ${SPRING_JPA_SHOW_SQL}
+    show-sql: true
     properties:
       hibernate:
         dialect: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT}
@@ -25,9 +25,9 @@ jwt:
   expiration: ${JWT_EXPIRATION}
 
 server:
-  port: ${SERVER_PORT}
+  port: 8080
 
 logging:
   level:
     org:
-      springframework: ${LOGGING_LEVEL_ORG_SPRINGFRAMEWORK}
+      springframework: DEBUG
