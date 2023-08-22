@@ -1,5 +1,10 @@
 package com.be017pre.be017pre.user.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserPostDto {
     private int userId;
     private String userEmail;
@@ -11,6 +16,5 @@ public class UserPostDto {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPw = userPw;
-
     }
 }

@@ -35,6 +35,7 @@ public class AnswerService {
         // .orElseThrow(() -> new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
         answer.setPost(post);
         answer.setUser(user);
+        answer.setUserId(userId);
         return answerRepository.save(answer);
     }
 

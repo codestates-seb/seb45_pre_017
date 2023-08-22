@@ -32,6 +32,7 @@ public class PostService {
         //List<String> tagList = new ArrayList<>(Arrays.asList(tag.split("\\s*,\\s*")));
         //post.setTags(tagList);
         User user = userRepository.findById(userId);
+        post.setUserId(userId);
         post.setUser(user);
         return postRepository.save(post);
 

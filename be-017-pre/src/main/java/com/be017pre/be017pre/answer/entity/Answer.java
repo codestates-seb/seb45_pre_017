@@ -31,6 +31,9 @@ public class Answer {
     @Column(nullable = false, name = "answer_date")
     private LocalDateTime answerDate;
 
+    @Column(nullable = false, name = "userid")
+    private int userId;
+
     @OneToMany(mappedBy = "answer")
     private List<Comment> comments = new ArrayList<>();
 
@@ -42,13 +45,4 @@ public class Answer {
     @JoinColumn(name = "user_id")
     private User user;
 
-    /*user 클래스 작성된 뒤 fix
-
-    @JoinColumn(nullable = false, name = "user_id")
-    private User user;
-
-    public void addUser(User user) {
-        this.user = user;
-    }
-    */
 }

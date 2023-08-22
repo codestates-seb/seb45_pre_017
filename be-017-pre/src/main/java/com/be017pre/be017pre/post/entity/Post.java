@@ -34,30 +34,15 @@ public class Post {
     @Column(nullable = false, name = "post_date")
     private LocalDateTime postDate = LocalDateTime.now();
 
+    @Column(nullable = false, name = "userid")
+    private int userId;
+
     @OneToMany(mappedBy = "post")
     private List<Answer> answers = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    /*
-    @Column(nullable = false, name = "LAST_MODIFIED_AT")
-    private LocalDateTime modifiedAt = LocalDateTime.now();
-    */
-    /*
-    @Column(nullable = true)
-    private int vote;
-
-    @Column(nullable = true)
-    private String tag;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "POST_TAG_LIST", joinColumns = @JoinColumn(name = "POST_ID"))
-    @Column(nullable = true, name = "TAG_LIST")
-    private List<String> tags;
-
-    */
 
 
 }

@@ -36,7 +36,6 @@ public class CommentController {
                                       @PathVariable("answerId") int answerId,
                                       @Valid @RequestBody CommentPostDto commentPostDto) {
 
-        //commentPostDto.setCommentId(answerId);
         //매퍼로 commentPostDto 클래스 comment로 변환
         Comment comment = commentMapper.commetPostDtoToComment(commentPostDto);
 

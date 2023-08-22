@@ -16,15 +16,14 @@ public class PostDto {
     @NotBlank(message = "내용을 입력하세요.")
     private String content;
     private LocalDateTime postDate = LocalDateTime.now();
+    private int userId;
 
-    //private int memberId;
-    //private String tag;
-    //private List<String> tagList;
-    public PostDto(int postId, String title, String content) {
+    public PostDto(int postId, String title, String content, int userId) {
         this.postId = postId;
         this.title = title;
         this.content = content;
         this.postDate = LocalDateTime.now();
+        this.userId = userId;
     }
 
 }

@@ -33,12 +33,10 @@ public class CommentService {
         comment.setAnswer(answer);
         User user = userRepository.findById(userId);
         comment.setUser(user);
+        comment.setUserId(userId);
         return commentRepository.save(comment);
     }
-    /*public Comment createComment(Comment comment, int answerId) {
 
-        return commentRepository.save(comment);
-    }*/
     public Comment updateComment(Comment comment) {
 
         Comment findComment = findVerifiedComment(comment.getCommentId());

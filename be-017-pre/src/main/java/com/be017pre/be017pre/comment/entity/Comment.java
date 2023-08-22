@@ -30,6 +30,9 @@ public class Comment {
     @Column(nullable = false, name = "comment_date")
     private LocalDateTime commentDate = LocalDateTime.now();
 
+    @Column(nullable = false, name = "userid")
+    private int userId;
+
 
     @ManyToOne
     @JoinColumn(name = "answer_id")
@@ -39,12 +42,6 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-/*
-    public void addUser(User user) {
-        this.user = user;
-    }
 
-
-     */
 
 }
