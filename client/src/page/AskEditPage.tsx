@@ -9,10 +9,12 @@ import AskEditForm from "../components/AskEditForm/Index";
 import AskEditButton from "../components/AskEditButton/Index";
 import Footer from "../components/Footer";
 
-const api = "http://3.34.199.73:8080/8/posts";
+const api = "http://3.34.199.73:8080";
 const pageTitle = "Ask a public question";
 
 const AskEditPage = () => {
+  const userId = 8; //유저 정보를 로컬에 저장 후 사용할 지 결정하기
+
   const navigate = useNavigate();
   const [postData, setPostData] = useState({});
 
@@ -23,7 +25,7 @@ const AskEditPage = () => {
   const posting = async () => {
     try {
       await axios
-        .post(api, postData)
+        .post(`${api}/${userId}/posts`, postData)
         .then((res: any) => {
           const path: string = `/posts/${res.data.postId}`;
           navigate(path);
