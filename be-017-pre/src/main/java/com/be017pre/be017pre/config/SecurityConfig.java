@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // 모든 GET 요청을 허용합니다.
+                .antMatchers(HttpMethod.POST, "/users/register").permitAll() // '/users/register' POST 요청을 허용합니다.
                 .anyRequest().authenticated() // 그 외의 모든 요청은 인증이 필요합니다.
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()) // 접근 거부 핸들러 설정
@@ -47,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
 
 
 

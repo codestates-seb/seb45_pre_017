@@ -1,15 +1,15 @@
 spring:
   security:
     user:
-      name: ${SPRING_SECURITY_USER_NAME}
-      password: ${SPRING_SECURITY_USER_PASSWORD}
+      name: myUsername
+      password: myPassword
   application:
-    name: ${SPRING_APPLICATION_NAME}
+    name: demo
   datasource:
-    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-017.cjdmzjfnvqzm.ap-northeast-2.rds.amazonaws.com/stackoverflow_017
+    username: admin
+    password: qordpsem017~
   sql:
     init:
       platform: mysql
@@ -17,12 +17,12 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        dialect: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT}
-    open-in-view: ${SPRING_JPA_OPEN_IN_VIEW}
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
+  secret: 0687bd30a2a1cc4f69e46ca9cbdad76ceda5305b660886690db3eeb15f309a86  # Consider using environment variables
+  expiration: 3600
 
 server:
   port: 8080

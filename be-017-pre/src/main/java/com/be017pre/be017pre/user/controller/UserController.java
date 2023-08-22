@@ -8,6 +8,8 @@ import com.be017pre.be017pre.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/users")
@@ -15,12 +17,14 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
     }
     @PostMapping("/register")
     public ResponseEntity<UserResponseDto> signup(@RequestBody UserPostDto userPostDto) {
+        logger.info("Received UserPostDto: {}", userPostDto);
         User user = userMapper.userPostDtoToUser(userPostDto);
         User response = userService.createUser(user);
         return new ResponseEntity<>(userMapper.userToUserResponseDto(response), HttpStatus.CREATED);
