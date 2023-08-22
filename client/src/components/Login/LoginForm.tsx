@@ -19,7 +19,13 @@ const LoginForm = () => {
   const handleLogin = async e => {
     e.preventDefault(); // 기본 동작 막음
     const loginSuccess = await login(email, password);
+
     if (loginSuccess) {
+      const response = await fetch("/users/login");
+      const data = await response.json();
+      const receivedJwtToken = data.jwt_token;
+      localStorage.setItem("jwtToken", receivedJwtToken);
+
       navigate("/");
     } else {
       setIsLoginValid(false);
