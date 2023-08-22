@@ -16,12 +16,14 @@ public class PostPatchDto {
     @NotBlank(message = "내용을 입력하세요.")
     private String content;
     private LocalDateTime postDate;
+    private int userId;
 
 
-    public PostPatchDto(int postId, String title, String content) {
+    public PostPatchDto(int postId, String title, String content, int userId) {
         this.postId = postId;
         this.title = title;
         this.content = content;
         this.postDate = LocalDateTime.now();
+        this.userId = userId;
     }
 }

@@ -15,9 +15,7 @@ import java.time.LocalDateTime;
 
 
 @RestController
-@RequestMapping("/posts")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-
+@RequestMapping("{userId}/posts")
 public class PostController {
     private final PostService postService;
     private final PostMapper mapper;
@@ -27,10 +25,11 @@ public class PostController {
         this.mapper = mapper;    }
 
     @PostMapping
-    public ResponseEntity postPost(@Valid @RequestBody PostDto postDto){
+    public ResponseEntity postPost(@PathVariable("userId") int userId,
+                                   @Valid @RequestBody PostDto postDto){
 
-        Post post = postService.createPost(mapper.postDtoToPost(postDto));
-
+        Post post = postService.createPost(mapper.postDtoToPost(postDto),userId);
+        post.setUserId(userId);
         return new ResponseEntity(mapper.postToPostResponseDto(post), HttpStatus.CREATED);
     }
 
@@ -46,10 +45,10 @@ public class PostController {
     }
 
     @GetMapping("{post-id}")
-    public ResponseEntity findPost(@PathVariable("post-id") @Positive int postId){
+    public ResponseEntity findPost(@PathVariable("post-id") @Positive int postId,
+                                   @PathVariable("userId") int userId){
 
         Post post = postService.findPost(postId);
-
         return new ResponseEntity(mapper.postToPostResponseDto(post), HttpStatus.OK);
     }
 
@@ -77,25 +76,4 @@ public class PostController {
 
 */
 
-
-/* 추후 수정
-    @GetMapping("/search")
-    public ResponseEntity getPostsByTag(@RequestParam @Positive int page,
-                                            @RequestParam @Positive int size,
-                                            @RequestParam String tag) {
-
-        List<String> tags = Arrays.asList(tag.split(",")); // 태그 리스트로 변환
-
-        Page<Post> tagPage = postService.findAllByTags(tag, page - 1, size);
-        PageInfo pageInfo = new PageInfo(page, size, tagPage.getTotalElements(), tagPage.getTotalPages());
-
-        List<Post> posts = tagPage.getContent();
-        List<PostDto.Response> responses = mapper.postsToPostResponseDtos(posts);
-
-        MultiResponseDto<postDto.Response> multiResponseDto = new MultiResponseDto<>(responses, pageInfo);
-
-        return ResponseEntity.ok()
-                .body(multiResponseDto);
-    }
-*/
 }

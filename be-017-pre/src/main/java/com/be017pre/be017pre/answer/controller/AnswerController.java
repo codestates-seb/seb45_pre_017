@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/posts/{postId}/answers")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-
+@RequestMapping("/{userId}/posts/{postId}/answers")
 public class AnswerController {
 
     private final AnswerService answerService;
@@ -32,11 +30,12 @@ public class AnswerController {
 
     //답변 등록
     @PostMapping
-    public ResponseEntity postAnswer(@PathVariable("postId") int postId,
+    public ResponseEntity postAnswer(@PathVariable("userId") int userId,
+                                     @PathVariable("postId") int postId,
                                      @Valid @RequestBody AnswerPostDto answerPostDto) {
 
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
-        Answer response = answerService.createAnswer(answer,postId);
+        Answer response = answerService.createAnswer(answer,postId,userId);
         return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(response),HttpStatus.CREATED);
     }
 
@@ -77,4 +76,5 @@ public class AnswerController {
         answerService.deleteAnswer(answerId);
     }
 }
+
 

@@ -2,6 +2,7 @@ package com.be017pre.be017pre.post.entity;
 
 
 import com.be017pre.be017pre.answer.entity.Answer;
+import com.be017pre.be017pre.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,9 +34,15 @@ public class Post {
     @Column(nullable = false, name = "post_date")
     private LocalDateTime postDate = LocalDateTime.now();
 
+    @Column(nullable = false, name = "userid")
+    private int userId;
+
     @OneToMany(mappedBy = "post")
     private List<Answer> answers = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }

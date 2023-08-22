@@ -2,6 +2,7 @@ package com.be017pre.be017pre.answer.entity;
 
 import com.be017pre.be017pre.comment.entity.Comment;
 import com.be017pre.be017pre.post.entity.Post;
+import com.be017pre.be017pre.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,9 @@ public class Answer {
     @Column(nullable = false, name = "answer_date")
     private LocalDateTime answerDate;
 
+    @Column(nullable = false, name = "userid")
+    private int userId;
+
     @OneToMany(mappedBy = "answer")
     private List<Comment> comments = new ArrayList<>();
 
@@ -37,13 +41,8 @@ public class Answer {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    /*user 클래스 작성된 뒤 fix
-
-    @JoinColumn(nullable = false, name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    public void addUser(User user) {
-        this.user = user;
-    }
-    */
 }
