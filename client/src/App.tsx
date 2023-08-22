@@ -9,6 +9,7 @@ import SignUpPage from "./page/SignUpPage";
 import LoginPage from "./components/Login";
 import LogoutPage from "./page/LogoutPage";
 import AskEditPage from "./page/AskEditPage";
+import AskModifyPage from "./page/AskModifyPage";
 import NoExistPage from "./page/NoExistPage";
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/users/logout" element={<LogoutPage />} />
             <Route path="/questions/ask" element={<AskEditPage />} />
+            <Route
+              path="/questions/modify/:postId"
+              element={<AskModifyPage />}
+            />
             <Route path="/noExist" element={<NoExistPage />} />
           </Routes>
         </Wrapper>
