@@ -9,8 +9,6 @@ const AskModifyForm = (props: any) => {
   const [editTitle, setEditTitle] = useState<string>(data.title);
   const [editBody, setEditBody] = useState<string>(data.content);
 
-  console.log(data);
-
   const EditTitle = (e: any) => {
     setEditTitle(e.target.value);
 
