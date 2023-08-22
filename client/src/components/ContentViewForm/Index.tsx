@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import HTMLReactParser from "html-react-parser";
 
 import ContentVoteBar from "./ContentVoteBar";
 import AdditonalButton from "./AdditionalButton";
@@ -8,39 +9,60 @@ import WriterProfile from "./WriterProfile";
 import { ContentProps } from "../../models/ContentProps";
 
 const ContentViewForm = (props: ContentProps) => {
-  const { contentCategory, content } = props;
+  const { contentCategory, questionContent, answerContent } = props;
 
-  return (
-    <TotalContainer contentCategory={contentCategory}>
-      <ContentVoteBar />
-      <MainContainer>
-        <MainContent>
-          {content.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
-        </MainContent>
-        <AssistantContent>
-          <AdditonalButton />
-          <WriterProfile contentCategory={contentCategory} />
-        </AssistantContent>
-      </MainContainer>
-    </TotalContainer>
-  );
+  if (contentCategory === "question") {
+    return (
+      <TotalContainer>
+        <ContentVoteBar />
+        <MainContainer>
+          <MainContent>{questionContent?.content}</MainContent>
+          <AssistantContent>
+            <AdditonalButton />
+            <WriterProfile
+              contentCategory="asked"
+              postDate={questionContent?.postDate}
+            />
+          </AssistantContent>
+        </MainContainer>
+      </TotalContainer>
+    );
+  }
+
+  if (contentCategory === "answer") {
+    return (
+      <TotalContainer>
+        <ContentVoteBar />
+        <MainContainer>
+          <MainContent>
+            {HTMLReactParser(answerContent?.answerBody as string)}
+          </MainContent>
+          <AssistantContent>
+            <AdditonalButton />
+            <WriterProfile
+              contentCategory="answerd"
+              postDate={answerContent?.answerDate}
+            />
+          </AssistantContent>
+        </MainContainer>
+      </TotalContainer>
+    );
+  }
+
+  return null;
 };
 
 export default ContentViewForm;
 
-interface ContainerProps {
-  contentCategory: string;
-}
-
-const TotalContainer = styled.div<ContainerProps>`
+const TotalContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom: ${props => props.contentCategory === "question" && "8px"};
+  margin-bottom: 8px;
 `;
 
 const MainContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 

@@ -1,21 +1,24 @@
 import React from "react";
 import { styled } from "styled-components";
 
-// dummyData
-import { dummyAnswer } from "./dummyAnswer";
-const dummyCount: string[] = [dummyAnswer];
+import { AnswerProps } from "../../models/ContentProps";
 
 const text: string = "Answers";
 
-const AnswerCounter = () => {
+const AnswerCounter = (props: OwnProps) => {
+  const { answerData } = props;
   return (
     <Container>
-      {dummyCount.length} {text}
+      {answerData.length} {text}
     </Container>
   );
 };
 
 export default AnswerCounter;
+
+interface OwnProps {
+  answerData: AnswerProps[];
+}
 
 const Container = styled.h2`
   margin-bottom: 8px;

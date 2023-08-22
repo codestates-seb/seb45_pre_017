@@ -1,28 +1,31 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import useGetComment from "../../hooks/useGetComment";
 import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
 
-const Comment = (props: CommentProps) => {
-  const { text, writer, date } = props;
+const Comment = () => {
+  const userID: string = "1";
+  const answerID: string = "21";
+
+  const { commentData } = useGetComment(userID, answerID);
+
   return (
     <Container>
-      <Text>{text}</Text>
-      <Writer>{`- ${writer}`}</Writer>
-      <Date>{date}</Date>
-      <AdditionalButton>
-        <EditCommentButton />
-        <DeleteCommentButton />
-      </AdditionalButton>
+      {commentData.map(data => (
+        <div key={data.commentId}>
+          <Text>{data.content}</Text>
+          <Writer>{`- ${data.name}`}</Writer>
+          <Date>{data.commentDate}</Date>
+          <AdditionalButton>
+            <EditCommentButton />
+            <DeleteCommentButton />
+          </AdditionalButton>
+        </div>
+      ))}
     </Container>
   );
 };
-
-interface CommentProps {
-  text: string;
-  writer: string;
-  date: string;
-}
 
 const Container = styled.li`
   list-style: none;

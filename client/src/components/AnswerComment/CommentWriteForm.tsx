@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+
+import usePostComment from "../../hooks/usePostComment";
 
 const submitButtonText: string = "Submit";
 const cancelButtonText: string = "Cancel";
@@ -7,11 +9,27 @@ const cancelButtonText: string = "Cancel";
 const CommentWriteForm = (props: buttonProps) => {
   const { setWriteForm } = props;
 
+  const userID: string = "1";
+  const answerID: string = "21";
+
+  const [value, setValue] = useState("");
+  const postComment = usePostComment(userID, answerID);
+
+  const textChangeEvent = e => {
+    setValue(e.target.value);
+  };
+
+  const commentSubmitEvent = () => {
+    postComment.mutate({ content: value });
+  };
+
   return (
     <WriteForm>
-      <Textarea />
+      <Textarea value={value} onChange={textChangeEvent} />
       <ButtonContainer>
-        <SubmitButton>{submitButtonText}</SubmitButton>
+        <SubmitButton onClick={commentSubmitEvent}>
+          {submitButtonText}
+        </SubmitButton>
         <CancelButton onClick={setWriteForm}>{cancelButtonText}</CancelButton>
       </ButtonContainer>
     </WriteForm>

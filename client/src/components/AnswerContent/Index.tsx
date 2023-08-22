@@ -1,29 +1,47 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import useGetAnswer from "../../hooks/useGetAnswer";
 import AnswerCounter from "./AnswerCounter";
 import ContentViewForm from "../ContentViewForm/Index";
 import AnswerComment from "../AnswerComment/Index";
 
-// dummyData
-import { dummyAnswer } from "./dummyAnswer";
-
 const AnswerContent = () => {
+  const userID: string = "1";
+  const postID: string = "2";
+
+  const { answerData } = useGetAnswer(userID, postID);
+
   return (
     <Container>
-      <AnswerCounter />
-      <ContentViewForm contentCategory="answer" content={dummyAnswer} />
-      <AnswerComment />
+      <AnswerCounter answerData={answerData} />
+      {answerData.map((data: AnswerData) => (
+        <ContentBox key={data.answerId}>
+          <ContentViewForm contentCategory="answer" answerContent={data} />
+          <AnswerComment />
+        </ContentBox>
+      ))}
     </Container>
   );
 };
 
 export default AnswerContent;
 
+interface AnswerData {
+  answerBody: string;
+  answerDate: string;
+  answerId: number;
+  name: string;
+  userId: number;
+}
+
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   margin-right: 16px;
-  border-bottom: 0.1px solid #cccccf;
   gap: 10px;
+`;
+
+const ContentBox = styled.div`
+  border-bottom: 0.1px solid #e4e5e6;
 `;

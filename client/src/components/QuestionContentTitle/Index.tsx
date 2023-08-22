@@ -1,24 +1,26 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import useGetQuestion from "../../hooks/useGetQuestion";
 import AskQuestionButton from "../AskQuestionButton/Index";
 import AdditionalInfo from "./AdditionalInfo";
 
-// 추후 삭제할 dummyData
-const dummyTitle: string =
-  "Pure CSS to control horizontal dividers between displayed elements";
 const dummyName: string = "Asked";
-const dummyInfo: string = "today";
 
 const QuestionContentTitle = () => {
+  const userId: string = "1";
+  const postID: string = "2";
+  const { questionData } = useGetQuestion(userId, postID);
+  const { title, postDate } = questionData;
+
   return (
     <div className="totalContainer">
       <TitleContainer>
-        <Title>{dummyTitle}</Title>
+        <Title>{title}</Title>
         <AskQuestionButton />
       </TitleContainer>
       <InfoContainer>
-        <AdditionalInfo infoName={dummyName} info={dummyInfo} />
+        <AdditionalInfo infoName={dummyName} info={postDate} />
       </InfoContainer>
     </div>
   );

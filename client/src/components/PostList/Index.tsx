@@ -25,7 +25,7 @@ const Post = (props: { Data: Props }) => {
           </Answer>
         </InfoSection>
         <ContentsSection>
-          <Link to={`page/${votes}`}>
+          <Link to={`posts/1`}>
             <Title>{title}</Title>
           </Link>
           <Tags>

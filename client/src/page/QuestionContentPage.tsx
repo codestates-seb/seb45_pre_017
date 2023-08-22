@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 
 import LeftSidebar from "../components/LeftSidebar";
@@ -10,23 +9,28 @@ import AnswerContent from "../components/AnswerContent/Index";
 import AnswerWriteForm from "../components/AnswerWriteForm/Index";
 import Footer from "../components/Footer";
 
-// 서버 통신 테스트 (1)
-import useGetContent from "../hooks/useGetContent";
+import useGetQuestion from "../hooks/useGetQuestion";
+import useGetAnswer from "../hooks/useGetAnswer";
+import useGetComment from "../hooks/useGetComment";
 
 const Title = QuestionContentTitle;
 
 const QuestionContentPage = () => {
-  // 서버 통신 테스트 (2)
-  const { votes } = useParams();
-  const { isLoading, error } = useGetContent("votes", votes as string);
+  const userId: string = "1";
+  const postID: string = "2";
+  const answerID: string = "21";
+
+  const { questionLoad, questionError } = useGetQuestion(userId, postID);
+  const { answerLoad, answerError } = useGetAnswer(userId, postID);
+  const { commentLoad, commentError } = useGetComment(userId, answerID);
 
   const loadingIndicator = "Loading...";
-  const errorIndicator = `Error: ${error}`;
+  const errorIndicator = `Error`;
 
-  if (isLoading) {
+  if (questionLoad || answerLoad || commentLoad) {
     return <p>{loadingIndicator}</p>;
   }
-  if (error) {
+  if (questionError || answerError || commentError) {
     return <p>{errorIndicator}</p>;
   }
 
@@ -35,19 +39,11 @@ const QuestionContentPage = () => {
       <OveralContainer>
         <LeftSidebar />
         <MainContainer>
-          {/* title 등 하부 컴포넌트에 parameter를 props로 전달
-          -> 해당 parameter를 key 값으로 react-query 에서 서버 데이터를 가져옴 (현재 votes로 임의 설정)
-            1) Title : 질문 제목, 작성 시간 
-            2) QuestionContent : 질문 본문, 댓글 관련 데이터 
-            3) AnswerContent : Question과 거의 동일 
-            4) AnswerWriteForm : post 기능이 필요 
-            */}
           <Title />
           <Content>
             <MainContent>
               <QuestionContent />
               <AnswerContent />
-              {/** parameter 전달 테스트 */}
               <AnswerWriteForm />
             </MainContent>
             <RightSidebar />
@@ -75,6 +71,7 @@ const OveralContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
+  width: 100%;
   padding: 24px;
 `;
 
