@@ -17,6 +17,7 @@ public class PostDto {
     private String content;
     private LocalDateTime postDate = LocalDateTime.now();
     private int userId;
+    private String name;
 
     public PostDto(int postId, String title, String content, int userId) {
         this.postId = postId;
@@ -24,6 +25,7 @@ public class PostDto {
         this.content = content;
         this.postDate = LocalDateTime.now();
         this.userId = userId;
+        this.name = name;
     }
 
 }

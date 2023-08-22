@@ -34,6 +34,9 @@ public class Answer {
     @Column(nullable = false, name = "userid")
     private int userId;
 
+    @Column(name = "name")
+    private String name;
+
     @OneToMany(mappedBy = "answer")
     private List<Comment> comments = new ArrayList<>();
 

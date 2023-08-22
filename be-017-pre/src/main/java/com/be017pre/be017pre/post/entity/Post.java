@@ -37,6 +37,9 @@ public class Post {
     @Column(nullable = false, name = "userid")
     private int userId;
 
+    @Column(name = "name")
+    private String name;
+
     @OneToMany(mappedBy = "post")
     private List<Answer> answers = new ArrayList<>();
 

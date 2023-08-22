@@ -14,11 +14,13 @@ public class CommentPostDto {
     private String content;
     private LocalDateTime commentDate;
     private int userId;
+    private String name;
 
     public CommentPostDto(int commentId, String content, int userId) {
         this.commentId = commentId;
         this.content = content;
         this.commentDate = LocalDateTime.now();
         this.userId = userId;
+        this.name = name;
     }
 }

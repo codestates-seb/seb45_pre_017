@@ -14,6 +14,7 @@ public class AnswerPostDto {
     private String answerBody;
     private LocalDateTime answerDate;
     private int userId;
+    private String name;
 
 
     public AnswerPostDto(int answerId, String answerBody, int userId) {
@@ -21,6 +22,7 @@ public class AnswerPostDto {
         this.answerBody = answerBody;
         this.answerDate = LocalDateTime.now();
         this.userId = userId;
+        this.name = name;
 
     }
 

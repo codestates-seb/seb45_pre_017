@@ -34,6 +34,7 @@ public class CommentService {
         User user = userRepository.findById(userId);
         comment.setUser(user);
         comment.setUserId(userId);
+        comment.setName("홍길동");
         return commentRepository.save(comment);
     }
 

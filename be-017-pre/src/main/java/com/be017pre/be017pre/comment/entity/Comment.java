@@ -33,6 +33,8 @@ public class Comment {
     @Column(nullable = false, name = "userid")
     private int userId;
 
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "answer_id")

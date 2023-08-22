@@ -36,6 +36,7 @@ public class AnswerService {
         answer.setPost(post);
         answer.setUser(user);
         answer.setUserId(userId);
+        answer.setName("홍길동");
         return answerRepository.save(answer);
     }
 

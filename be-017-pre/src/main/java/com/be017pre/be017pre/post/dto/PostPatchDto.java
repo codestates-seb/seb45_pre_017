@@ -17,6 +17,7 @@ public class PostPatchDto {
     private String content;
     private LocalDateTime postDate;
     private int userId;
+    private String name;
 
 
     public PostPatchDto(int postId, String title, String content, int userId) {
@@ -25,5 +26,6 @@ public class PostPatchDto {
         this.content = content;
         this.postDate = LocalDateTime.now();
         this.userId = userId;
+        this.name = name;
     }
 }

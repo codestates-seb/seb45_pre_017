@@ -31,6 +31,7 @@ public class PostService {
         User user = userRepository.findById(userId);
         post.setUserId(userId);
         post.setUser(user);
+        post.setName("홍길동");
         return postRepository.save(post);
 
     }
