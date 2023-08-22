@@ -7,6 +7,7 @@ import Mainpage from "./page/Mainpage";
 import QuestionContentPage from "./page/QuestionContentPage";
 import SignUpPage from "./page/SignUpPage";
 import AskEditPage from "./page/AskEditPage";
+import AskModifyPage from "./page/AskModifyPage";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             <Route path="/page/:votes" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/questions/ask" element={<AskEditPage />} />
+            <Route
+              path="/questions/modify/:postId"
+              element={<AskModifyPage />}
+            />
           </Routes>
         </Wrapper>
       </Router>

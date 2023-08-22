@@ -31,7 +31,7 @@ export default AskEditAside;
 const AsideContainer = styled.div`
   width: 40%;
   max-width: 300px;
-  height: 81.5%;
+  height: 100%;
 
   background-color: white;
 
