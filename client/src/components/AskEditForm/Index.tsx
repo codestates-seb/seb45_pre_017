@@ -1,22 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import { title, body, tags } from "./dummyForm";
 import EditBox from "./EditBox";
 
-const AskEditForm = () => {
+const AskEditForm = (props: any) => {
+  const [editTitle, setEditTitle] = useState<string>("");
+  const [editBody, setEditBody] = useState<string>("");
+  const { PostData } = props;
+
+  const EditTitle = (e: any) => {
+    setEditTitle(e.target.value);
+
+    PostData({
+      title: editTitle,
+      content: editBody,
+    });
+  };
+
+  const EditBody = (e: any) => {
+    setEditBody(e);
+
+    PostData({
+      title: editTitle,
+      content: editBody,
+    });
+  };
+
   return (
     <>
       <FormContainer>
         <Section className="TitleSection">
           <Title>{title.title}</Title>
           <SubTitle>{title.subTitle}</SubTitle>
-          <Input className="TitleInput" placeholder={title.contents} />
+          <Input
+            className="TitleInput"
+            placeholder={title.contents}
+            value={editTitle}
+            onChange={e => EditTitle(e)}
+          />
         </Section>
         <Section className="BodySection">
           <Title>{body.title}</Title>
           <SubTitle>{body.subTitle}</SubTitle>
-          <EditBox />
+          <EditBox EditBody={EditBody} />
         </Section>
         <Section className="TagsSection">
           <Title>{tags.title}</Title>

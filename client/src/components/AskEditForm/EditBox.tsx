@@ -3,10 +3,10 @@ import { styled } from "styled-components";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const EditBox = () => {
+const EditBox = (props: any) => {
   return (
     <>
-      <TextWriteForm theme="snow" />
+      <TextWriteForm theme="snow" onChange={e => props.EditBody(e)} />
     </>
   );
 };
