@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { svgbag, svgstar } from "./LeftSidebarSvg";
@@ -9,12 +10,14 @@ const LeftSidebar = () => {
   return (
     <Sidebar>
       <SidebarContainer>
-        <HomeContainer
-          className={`category ${selectedMenu === "Home" ? "selected" : ""}`}
-          onClick={() => setSelectedMenu("Home")}
-        >
-          Home
-        </HomeContainer>
+        <Link to="/">
+          <HomeContainer
+            className={`category ${selectedMenu === "Home" ? "selected" : ""}`}
+            onClick={() => setSelectedMenu("Home")}
+          >
+            Home
+          </HomeContainer>
+        </Link>
         <PublicContainer className="category">
           <ListNameContainer>PUBLIC</ListNameContainer>
           <ul>
@@ -25,7 +28,9 @@ const LeftSidebar = () => {
               onClick={() => setSelectedMenu("Questions")}
             >
               <TextContainer>
-                <FaGlobeAmericas size={15} /> Questions
+                <Link to="/noExist">
+                  <FaGlobeAmericas size={15} /> Questions
+                </Link>
               </TextContainer>
             </li>
             <li
@@ -34,7 +39,9 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Tags")}
             >
-              <TextContainer> Tags</TextContainer>
+              <Link to="/noExist">
+                <TextContainer> Tags</TextContainer>
+              </Link>
             </li>
             <li
               className={`list-li ${
@@ -42,7 +49,9 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Users")}
             >
-              <TextContainer> Users</TextContainer>
+              <Link to="/noExist">
+                <TextContainer> Users</TextContainer>
+              </Link>
             </li>
             <li
               className={`list-li ${
@@ -50,7 +59,9 @@ const LeftSidebar = () => {
               }`}
               onClick={() => setSelectedMenu("Companies")}
             >
-              <TextContainer> Companies</TextContainer>
+              <Link to="/noExist">
+                <TextContainer> Companies</TextContainer>
+              </Link>
             </li>
           </ul>
         </PublicContainer>
@@ -96,6 +107,7 @@ export default LeftSidebar;
 
 const TextContainer = styled.div`
   padding-left: 10px;
+  color: black;
 `;
 
 const ListNameContainer = styled.div`
@@ -103,6 +115,14 @@ const ListNameContainer = styled.div`
 `;
 
 const Sidebar = styled.div`
+  a:link {
+    color: black;
+  }
+
+  a:visited {
+    color: black;
+  }
+
   float: left;
   display: flex;
   height: auto;
