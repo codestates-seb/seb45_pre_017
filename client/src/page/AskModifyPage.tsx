@@ -1,15 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "styled-components";
+import axios from "axios";
 
 import AskEditAside from "../components/AskEditAside/Index";
-import AskEditForm from "../components/AskEditForm/Index";
+import AskModifyForm from "../components/AskModifyForm/Index";
 import AskEditButton from "../components/AskEditButton/Index";
 import Footer from "../components/Footer";
 import LeftSidebar from "../components/LeftSidebar";
 
 const pageTitle = "Ask a public question";
+const api = "http://3.34.199.73:8080";
 
 const AskModifyPage = () => {
+  const userId = 9; //유저 정보를 로컬에 저장 후 사용할 지 결정하기
+
+  const { postId } = useParams();
+  const navigate = useNavigate();
+  const [postData, setPostData] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`${api}/${userId}/posts/${postId}`)
+      .then((res: any) => {
+        setPostData({
+          title: res.data.title,
+          content: res.data.content,
+        });
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+  const PostData = (data: postDataType) => {
+    setPostData(data);
+  };
+
+  const posting = async () => {
+    try {
+      await axios
+        .patch(`${api}/${userId}/posts/${postId}`, postData)
+        .then((res: any) => {
+          const path: string = `/posts/${res.data.postId}`;
+          navigate(path);
+        })
+        .catch(err => console.error(err));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <AskContainer>
@@ -21,8 +60,8 @@ const AskModifyPage = () => {
             </TitleSection>
             <ContentsSection>
               <EditSection>
-                <AskEditForm />
-                <AskEditButton />
+                <AskModifyForm data={postData} PostData={PostData} />
+                <AskEditButton posting={posting} />
               </EditSection>
               <AskEditAside />
             </ContentsSection>
@@ -35,6 +74,11 @@ const AskModifyPage = () => {
 };
 
 export default AskModifyPage;
+
+interface postDataType {
+  title: string;
+  content: string;
+}
 
 const AskContainer = styled.div`
   background-color: #f8f9f9;
