@@ -5,8 +5,8 @@ import com.be017pre.be017pre.exception.BusinessLogicException;
 import com.be017pre.be017pre.exception.ExceptionCode;
 import com.be017pre.be017pre.post.entity.Post;
 import com.be017pre.be017pre.post.repository.PostRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.be017pre.be017pre.user.repository.UserRepository;
+import com.be017pre.be017pre.user.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,17 +18,22 @@ import java.util.Optional;
 public class PostService {
 
     private PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
 
-    public Post createPost(Post post) {
+    public Post createPost(Post post, int userId) {
 
         //String tag = post.getTag();
         //List<String> tagList = new ArrayList<>(Arrays.asList(tag.split("\\s*,\\s*")));
         //post.setTags(tagList);
+        User user = userRepository.findById(userId);
+        post.setUserId(userId);
+        post.setUser(user);
         return postRepository.save(post);
 
     }
