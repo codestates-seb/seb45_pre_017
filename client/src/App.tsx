@@ -11,6 +11,7 @@ import LogoutPage from "./page/LogoutPage";
 import AskEditPage from "./page/AskEditPage";
 import AskModifyPage from "./page/AskModifyPage";
 import NoExistPage from "./page/NoExistPage";
+import AnswerModifyPage from "./page/AnswerModifyPage";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
               element={<AskModifyPage />}
             />
             <Route path="/noExist" element={<NoExistPage />} />
+            <Route
+              path="/answer/:postId/modify/:answerId"
+              element={<AnswerModifyPage />}
+            />
           </Routes>
         </Wrapper>
       </Router>
