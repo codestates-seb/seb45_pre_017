@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
-
+@CrossOrigin(origins = "http://localhost:3030",allowedHeaders = "*")
 @RestController
 @RequestMapping("{userId}/posts")
 public class PostController {
