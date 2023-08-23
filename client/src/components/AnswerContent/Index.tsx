@@ -12,17 +12,21 @@ const AnswerContent = () => {
 
   const { answerData } = useGetAnswer(userID, postID);
 
-  return (
-    <Container>
-      <AnswerCounter answerData={answerData} />
-      {answerData.map((data: AnswerData) => (
-        <ContentBox key={data.answerId}>
-          <ContentViewForm contentCategory="answer" answerContent={data} />
-          <AnswerComment />
-        </ContentBox>
-      ))}
-    </Container>
-  );
+  if (answerData) {
+    return (
+      <Container>
+        <AnswerCounter answerData={answerData} />
+        {answerData.map((data: AnswerData) => (
+          <ContentBox key={data.answerId}>
+            <ContentViewForm contentCategory="answer" answerContent={data} />
+            <AnswerComment answerID={data.answerId} />
+          </ContentBox>
+        ))}
+      </Container>
+    );
+  }
+
+  return null;
 };
 
 export default AnswerContent;

@@ -6,11 +6,10 @@ import usePostComment from "../../hooks/usePostComment";
 const submitButtonText: string = "Submit";
 const cancelButtonText: string = "Cancel";
 
-const CommentWriteForm = (props: buttonProps) => {
-  const { setWriteForm } = props;
+const CommentWriteForm = (props: OwnProps) => {
+  const { setWriteForm, answerID } = props;
 
   const userID: string = "1";
-  const answerID: string = "21";
 
   const [value, setValue] = useState("");
   const postComment = usePostComment(userID, answerID);
@@ -21,6 +20,7 @@ const CommentWriteForm = (props: buttonProps) => {
 
   const commentSubmitEvent = () => {
     postComment.mutate({ content: value });
+    setWriteForm();
   };
 
   return (
@@ -38,8 +38,9 @@ const CommentWriteForm = (props: buttonProps) => {
 
 export default CommentWriteForm;
 
-interface buttonProps {
+interface OwnProps {
   setWriteForm: () => void;
+  answerID: number;
 }
 
 const WriteForm = styled.form`

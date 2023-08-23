@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
 import axios from "axios";
 
-const usePostComment = (userID: string, postID: string) => {
+const usePostComment = (userID: string, answerID: number) => {
   // 전달인자 수정해야 함
   const postComment = useMutation((data: Data) =>
-    postData(userID, postID, data),
+    postData(userID, answerID, data),
   );
 
   return postComment;
@@ -13,7 +13,7 @@ const usePostComment = (userID: string, postID: string) => {
 export default usePostComment;
 
 // useMutation 콜백 함수
-const postData = async (userID: string, answerID: string, data: Data) => {
+const postData = async (userID: string, answerID: number, data: Data) => {
   const response = await axios.post(
     `http://3.34.199.73:8080/${userID}/${answerID}/comments`,
     data,

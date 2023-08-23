@@ -5,8 +5,10 @@ import Comment from "./Comment";
 import { AddCommentButton } from "./AdditionalButton";
 import CommentWriteForm from "./CommentWriteForm";
 
-const AnswerComment = () => {
+const AnswerComment = ({ answerID }: { answerID: number }) => {
   const [writeForm, setWriteForm] = useState<boolean>(false);
+
+  console.log(answerID);
 
   const setWriteFormEvent = () => {
     setWriteForm(!writeForm);
@@ -15,12 +17,15 @@ const AnswerComment = () => {
   return (
     <Container>
       <CommentList>
-        <Comment />
+        <Comment answerID={answerID} />
       </CommentList>
       {!writeForm ? (
         <AddCommentButton setWriteForm={setWriteFormEvent} />
       ) : (
-        <CommentWriteForm setWriteForm={setWriteFormEvent} />
+        <CommentWriteForm
+          setWriteForm={setWriteFormEvent}
+          answerID={answerID}
+        />
       )}
     </Container>
   );

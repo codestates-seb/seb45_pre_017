@@ -10,27 +10,22 @@ import AnswerWriteForm from "../components/AnswerWriteForm/Index";
 import Footer from "../components/Footer";
 
 import useGetQuestion from "../hooks/useGetQuestion";
-import useGetAnswer from "../hooks/useGetAnswer";
-import useGetComment from "../hooks/useGetComment";
 
 const Title = QuestionContentTitle;
 
 const QuestionContentPage = () => {
   const userId: string = "1";
   const postID: string = "2";
-  const answerID: string = "21";
 
   const { questionLoad, questionError } = useGetQuestion(userId, postID);
-  const { answerLoad, answerError } = useGetAnswer(userId, postID);
-  const { commentLoad, commentError } = useGetComment(userId, answerID);
 
   const loadingIndicator = "Loading...";
   const errorIndicator = `Error`;
 
-  if (questionLoad || answerLoad || commentLoad) {
+  if (questionLoad) {
     return <p>{loadingIndicator}</p>;
   }
-  if (questionError || answerError || commentError) {
+  if (questionError) {
     return <p>{errorIndicator}</p>;
   }
 
