@@ -22,7 +22,7 @@ spring:
 
 jwt:
   secret: 0687bd30a2a1cc4f69e46ca9cbdad76ceda5305b660886690db3eeb15f309a86  # Consider using environment variables
-  expiration: 3600
+  expiration: 600000
 
 server:
   port: 8080

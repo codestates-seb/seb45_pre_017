@@ -25,13 +25,13 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email", nullable = false)
     private String userEmail;
 
-    @Column(name = "user_pw")
+    @Column(name = "user_pw", nullable = false)  // 추가한 속성
     private String userPw;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false)  // 추가한 속성
     private String userName;
 
     @OneToMany(mappedBy = "user")

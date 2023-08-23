@@ -8,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     public UserService(UserRepository userRepository, JwtUtil jwtUtil) {
@@ -34,6 +39,12 @@ public class UserService {
 
 
     public User createUser(User user) {
+        if (user.getUserEmail() == null) {
+            // 여기에 로깅을 추가하거나 예외를 발생시킬 수 있습니다.
+            throw new IllegalArgumentException("userEmail cannot be null");
+        }
+        // 로깅 추가
+        logger.info("Creating user with email: {}", user.getUserEmail());
         return userRepository.save(user);
     }
 

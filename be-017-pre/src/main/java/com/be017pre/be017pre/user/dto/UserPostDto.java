@@ -14,12 +14,13 @@ public class UserPostDto {
     private Integer userId;
 
     @Email(message = "Email should be valid")
-    @NotBlank(message = "Email is mandatory")  // 추가한 어노테이션
+    @NotBlank(message = "Email is mandatory")
     private String userEmail;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Name is mandatory")  // 추가한 어노테이션
     private String userName;
 
+    @NotBlank(message = "Password is mandatory")  // 추가한 어노테이션
     @Size(min = 8, max = 40, message = "Password should be between 8 and 40 characters")
     private String userPw;
 
