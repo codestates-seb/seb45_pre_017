@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import useGetComment from "../../hooks/useGetComment";
-
 import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
 import CommentEditForm from "./CommentEditForm";
 
@@ -12,7 +11,6 @@ const Comment = (props: OwnProps) => {
 
   const { commentData } = useGetComment(userID, answerID);
   const [editForm, setEditForm] = useState(0);
-  // // const [value, setValue] = useState("");
 
   const setEditFormEvent = (commentID: number) => {
     setEditForm(commentID);

@@ -44,6 +44,7 @@ const CommentEditForm = (props: OwnProps) => {
 
 export default CommentEditForm;
 
+// type 선언
 interface OwnProps {
   answerID: number;
   commentID: number;
@@ -51,6 +52,7 @@ interface OwnProps {
   setEditForm: (commentID: number) => void;
 }
 
+// component 생성
 const WriteForm = styled.form`
   margin-right: 8px;
 `;
