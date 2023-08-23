@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/**").permitAll() // 모든 GET 요청을 허용합니다.
                 .antMatchers(HttpMethod.POST, "/users/**").permitAll() // '/users/*' 모든 POST 요청을 허용합니다.
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated() // 그 외의 모든 요청은 인증이 필요합니다.
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()) // 접근 거부 핸들러 설정
