@@ -8,6 +8,7 @@ export interface QuestionProps {
   content: string;
   postDate: string;
   name?: string;
+  userId: number;
 }
 
 export interface AnswerProps {
@@ -17,9 +18,3 @@ export interface AnswerProps {
   userId: number;
   name: string;
 }
-
-// "answerId": 21,
-//         "answerBody": "test",
-//         "answerDate": "2023-08-22T15:55:48",
-//         "userId": 1,
-//         "name": "홍길동"

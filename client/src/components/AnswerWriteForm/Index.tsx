@@ -11,7 +11,7 @@ const AnswerWriteForm = () => {
   const [value, setValue] = useState<string>("");
 
   const userID: string = "1";
-  const postID: string = "2";
+  const postID: string = "1";
   const postMutation = usePostAnswer(userID, postID);
 
   const postAnswerToSever = () => {

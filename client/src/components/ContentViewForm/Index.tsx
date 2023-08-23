@@ -8,8 +8,16 @@ import WriterProfile from "./WriterProfile";
 
 import { ContentProps } from "../../models/ContentProps";
 
+// test
+import { useEffect } from "react";
+
 const ContentViewForm = (props: ContentProps) => {
   const { contentCategory, questionContent, answerContent } = props;
+
+  useEffect(() => {
+    console.log(questionContent);
+    console.log(answerContent);
+  }, []);
 
   if (contentCategory === "question") {
     return (
@@ -18,7 +26,10 @@ const ContentViewForm = (props: ContentProps) => {
         <MainContainer>
           <MainContent>{questionContent?.content}</MainContent>
           <AssistantContent>
-            <AdditonalButton />
+            <AdditonalButton
+              contentCategory={contentCategory}
+              userID={questionContent?.userId}
+            />
             <WriterProfile
               contentCategory="asked"
               postDate={questionContent?.postDate}
@@ -38,7 +49,11 @@ const ContentViewForm = (props: ContentProps) => {
             {HTMLReactParser(answerContent?.answerBody as string)}
           </MainContent>
           <AssistantContent>
-            <AdditonalButton />
+            <AdditonalButton
+              contentCategory={contentCategory}
+              userID={answerContent?.userId}
+              answerID={answerContent?.answerId}
+            />
             <WriterProfile
               contentCategory="answerd"
               postDate={answerContent?.answerDate}
