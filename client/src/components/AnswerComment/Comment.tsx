@@ -1,60 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 import useGetComment from "../../hooks/useGetComment";
 
 import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
-// import CommentEditForm from "./CommentEditForm";
+import CommentEditForm from "./CommentEditForm";
 
 const Comment = (props: OwnProps) => {
   const { answerID } = props;
   const userID: string = "1";
 
   const { commentData } = useGetComment(userID, answerID);
-  // const [editForm, setEditForm] = useState(false);
+  const [editForm, setEditForm] = useState(0);
   // // const [value, setValue] = useState("");
 
-  // const setEditFormEvent = () => {
-  //   setEditForm(!editForm);
-  // };
+  const setEditFormEvent = (commentID: number) => {
+    setEditForm(commentID);
+  };
 
   if (commentData) {
     return (
       <Container>
-        {commentData.map(data => (
-          <div key={data.commentId}>
-            <Text>{data.content}</Text>
-            <Writer>{`- ${data.name}`}</Writer>
-            <Date>{data.commentDate}</Date>
-            <AdditionalButton>
-              <EditCommentButton
-                answerID={answerID}
-                commentID={data.commentId}
-              />
-              <DeleteCommentButton
-                answerID={answerID}
-                commentID={data.commentId}
-              />
-            </AdditionalButton>
-          </div>
-        ))}
+        {commentData.map(data =>
+          editForm !== data.commentId ? (
+            <div key={data.commentId}>
+              <Text>{data.content}</Text>
+              <Writer>{`- ${data.name}`}</Writer>
+              <Date>{data.commentDate}</Date>
+              <AdditionalButton>
+                <EditCommentButton
+                  setEditForm={setEditFormEvent}
+                  commentID={data.commentId}
+                />
+                <DeleteCommentButton
+                  answerID={answerID}
+                  commentID={data.commentId}
+                />
+              </AdditionalButton>
+            </div>
+          ) : (
+            <CommentEditForm
+              key={data.commentId}
+              answerID={answerID}
+              commentID={data.commentId}
+              initailValue={data.content}
+              setEditForm={setEditFormEvent}
+            />
+          ),
+        )}
       </Container>
     );
   }
-
-  // if (!commentData) {
-  //   return (
-  //     <Container>
-  //       <Text></Text>
-  //       <Writer></Writer>
-  //       <Date></Date>
-  //       <AdditionalButton>
-  //         <EditCommentButton />
-  //         <DeleteCommentButton />
-  //       </AdditionalButton>
-  //     </Container>
-  //   );
-  // }
 
   return null;
 };

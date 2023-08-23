@@ -17,16 +17,18 @@ export const AddCommentButton = (props: AddProps) => {
 };
 
 // comment 수정
-export const EditCommentButton = (props: EditDeleteProps) => {
-  const { answerID, commentID, setEditForm } = props;
-  console.log(commentID);
-  console.log(answerID);
+export const EditCommentButton = (props: EditProps) => {
+  const { commentID, setEditForm } = props;
 
-  return <EditButton onClick={setEditForm}>{editButtonText}</EditButton>;
+  return (
+    <EditButton onClick={() => setEditForm(commentID)}>
+      {editButtonText}
+    </EditButton>
+  );
 };
 
 // comment 삭제
-export const DeleteCommentButton = (props: EditDeleteProps) => {
+export const DeleteCommentButton = (props: DeleteProps) => {
   const { answerID, commentID } = props;
   const deleteComment = useDleteComment(userId, answerID, commentID);
 
@@ -44,10 +46,14 @@ interface AddProps {
   setWriteForm: () => void;
 }
 
-interface EditDeleteProps {
+interface EditProps {
+  commentID: number;
+  setEditForm: (commentID: number) => void;
+}
+
+interface DeleteProps {
   answerID: number;
   commentID: number;
-  setEditForm?: () => void;
 }
 
 // component 생성

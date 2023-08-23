@@ -32,7 +32,7 @@ const postData = async (
   commentID: number,
   data: Data,
 ) => {
-  const response = await axios.post(
+  const response = await axios.patch(
     `http://3.34.199.73:8080/${userID}/${answerID}/comments/${commentID}`,
     data,
     options,

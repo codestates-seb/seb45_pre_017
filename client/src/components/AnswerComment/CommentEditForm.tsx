@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
+import usePatchComment from "../../hooks/usePatchComment";
+
 const submitButtonText: string = "Submit";
 const cancelButtonText: string = "Cancel";
 
 const CommentEditForm = (props: OwnProps) => {
-  const { setEditForm, answerID } = props;
+  const { answerID, commentID, initailValue, setEditForm } = props;
 
-  console.log(answerID);
+  const userID: string = "1";
 
-  //   const userID: string = "1";
-
-  const [value, setValue] = useState("");
+  const patchComment = usePatchComment(userID, answerID, commentID);
+  const [value, setValue] = useState(initailValue);
 
   const textChangeEvent = e => {
     setValue(e.target.value);
   };
 
   const commentSubmitEvent = () => {
-    setEditForm();
+    patchComment.mutate({ content: value });
+    setEditForm(0);
+  };
+
+  const closeEditFormEvent = () => {
+    setEditForm(0);
   };
 
   return (
@@ -28,7 +34,9 @@ const CommentEditForm = (props: OwnProps) => {
         <SubmitButton onClick={commentSubmitEvent}>
           {submitButtonText}
         </SubmitButton>
-        <CancelButton onClick={setEditForm}>{cancelButtonText}</CancelButton>
+        <CancelButton onClick={closeEditFormEvent}>
+          {cancelButtonText}
+        </CancelButton>
       </ButtonContainer>
     </WriteForm>
   );
@@ -37,8 +45,10 @@ const CommentEditForm = (props: OwnProps) => {
 export default CommentEditForm;
 
 interface OwnProps {
-  setEditForm: () => void;
   answerID: number;
+  commentID: number;
+  initailValue: string;
+  setEditForm: (commentID: number) => void;
 }
 
 const WriteForm = styled.form`
