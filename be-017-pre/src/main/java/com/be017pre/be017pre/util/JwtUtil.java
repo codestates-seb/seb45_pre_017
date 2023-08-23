@@ -17,7 +17,8 @@ import java.util.function.Function;
 
 @Component
 public class JwtUtil {
-    private String SECRET_KEY = "secret";
+    @Value("${jwt.secret}")
+    private String SECRET_KEY;  // 1. SECRET_KEY 주입 받도록 수정
 
     @Value("${jwt.expiration}")
     private long jwtExpiration;
@@ -45,6 +46,11 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        if (userDetails instanceof User) {
+            User user = (User) userDetails;
+            claims.put("userId", user.getUserId());
+            claims.put("userName", user.getUserName());
+        }
         return createToken(claims, userDetails.getUsername());
     }
 
@@ -54,6 +60,7 @@ public class JwtUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
+
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
