@@ -1,27 +1,56 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import useDleteComment from "../../hooks/useDeletComment";
+
 const AddButtonText: string = "Add a comment";
 const editButtonText: string = "Edit";
 const deleteButtonText: string = "Delete";
 
-export const AddCommentButton = (props: buttonProps) => {
+// 임의의 값
+const userId: string = "1";
+
+// comment 추가
+export const AddCommentButton = (props: AddProps) => {
   const { setWriteForm } = props;
   return <AddButton onClick={setWriteForm}>{AddButtonText}</AddButton>;
 };
 
-export const EditCommentButton = () => {
-  return <EditButton>{editButtonText}</EditButton>;
+// comment 수정
+export const EditCommentButton = (props: EditDeleteProps) => {
+  const { answerID, commentID, setEditForm } = props;
+  console.log(commentID);
+  console.log(answerID);
+
+  return <EditButton onClick={setEditForm}>{editButtonText}</EditButton>;
 };
 
-export const DeleteCommentButton = () => {
-  return <DeleteButton>{deleteButtonText}</DeleteButton>;
+// comment 삭제
+export const DeleteCommentButton = (props: EditDeleteProps) => {
+  const { answerID, commentID } = props;
+  const deleteComment = useDleteComment(userId, answerID, commentID);
+
+  const deleteCommentEvent = () => {
+    deleteComment.mutate();
+  };
+
+  return (
+    <DeleteButton onClick={deleteCommentEvent}>{deleteButtonText}</DeleteButton>
+  );
 };
 
-interface buttonProps {
+// type 정의
+interface AddProps {
   setWriteForm: () => void;
 }
 
+interface EditDeleteProps {
+  answerID: number;
+  commentID: number;
+  setEditForm?: () => void;
+}
+
+// component 생성
 const AddButton = styled.div`
   font-size: 13px;
   color: #838c95;

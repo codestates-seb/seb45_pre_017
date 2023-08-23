@@ -2,12 +2,21 @@ import React from "react";
 import { styled } from "styled-components";
 
 import useGetComment from "../../hooks/useGetComment";
-import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
 
-const Comment = ({ answerID }: { answerID: number }) => {
+import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
+// import CommentEditForm from "./CommentEditForm";
+
+const Comment = (props: OwnProps) => {
+  const { answerID } = props;
   const userID: string = "1";
 
   const { commentData } = useGetComment(userID, answerID);
+  // const [editForm, setEditForm] = useState(false);
+  // // const [value, setValue] = useState("");
+
+  // const setEditFormEvent = () => {
+  //   setEditForm(!editForm);
+  // };
 
   if (commentData) {
     return (
@@ -18,8 +27,14 @@ const Comment = ({ answerID }: { answerID: number }) => {
             <Writer>{`- ${data.name}`}</Writer>
             <Date>{data.commentDate}</Date>
             <AdditionalButton>
-              <EditCommentButton />
-              <DeleteCommentButton />
+              <EditCommentButton
+                answerID={answerID}
+                commentID={data.commentId}
+              />
+              <DeleteCommentButton
+                answerID={answerID}
+                commentID={data.commentId}
+              />
             </AdditionalButton>
           </div>
         ))}
@@ -27,22 +42,26 @@ const Comment = ({ answerID }: { answerID: number }) => {
     );
   }
 
-  if (!commentData) {
-    return (
-      <Container>
-        <Text></Text>
-        <Writer></Writer>
-        <Date></Date>
-        <AdditionalButton>
-          <EditCommentButton />
-          <DeleteCommentButton />
-        </AdditionalButton>
-      </Container>
-    );
-  }
+  // if (!commentData) {
+  //   return (
+  //     <Container>
+  //       <Text></Text>
+  //       <Writer></Writer>
+  //       <Date></Date>
+  //       <AdditionalButton>
+  //         <EditCommentButton />
+  //         <DeleteCommentButton />
+  //       </AdditionalButton>
+  //     </Container>
+  //   );
+  // }
 
   return null;
 };
+
+interface OwnProps {
+  answerID: number;
+}
 
 const Container = styled.li`
   list-style: none;

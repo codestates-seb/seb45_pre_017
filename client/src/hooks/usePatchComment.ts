@@ -1,11 +1,15 @@
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 
-const usePostComment = (userID: string, answerID: number) => {
+const usePatchComment = (
+  userID: string,
+  answerID: number,
+  commentID: number,
+) => {
   const queryClient = useQueryClient();
 
-  const postComment = useMutation(
-    (data: Data) => postData(userID, answerID, data),
+  const patchComment = useMutation(
+    (data: Data) => postData(userID, answerID, commentID, data),
 
     {
       onSuccess: () => {
@@ -16,15 +20,20 @@ const usePostComment = (userID: string, answerID: number) => {
     },
   );
 
-  return postComment;
+  return patchComment;
 };
 
-export default usePostComment;
+export default usePatchComment;
 
 // useMutation 콜백 함수
-const postData = async (userID: string, answerID: number, data: Data) => {
+const postData = async (
+  userID: string,
+  answerID: number,
+  commentID: number,
+  data: Data,
+) => {
   const response = await axios.post(
-    `http://3.34.199.73:8080/${userID}/${answerID}/comments`,
+    `http://3.34.199.73:8080/${userID}/${answerID}/comments/${commentID}`,
     data,
     options,
   );
