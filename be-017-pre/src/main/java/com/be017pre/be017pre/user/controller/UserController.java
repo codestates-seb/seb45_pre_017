@@ -61,7 +61,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/info/{userId}")
+    @GetMapping("/{userId}/profile")
     public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable int userId) {
         User user = userService.findById(userId);
         if (user != null) {
@@ -71,7 +71,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/update/{userId}")
+    @PatchMapping("/{userId}/profile")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable int userId, @RequestBody UserPostDto userPostDto) {
         User userToUpdate = userMapper.userPostDtoToUser(userPostDto);
         User updatedUser = userService.updateUser(userId, userToUpdate);
@@ -82,7 +82,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
         if (userService.deleteUser(userId)) {
             return ResponseEntity.noContent().build();
