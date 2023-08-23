@@ -4,10 +4,10 @@ import { styled } from "styled-components";
 import { title, body, tags } from "./dummyForm";
 import EditBox from "./EditBox";
 
-const AskEditForm = (props: any) => {
-  const [editTitle, setEditTitle] = useState<string>("");
-  const [editBody, setEditBody] = useState<string>("");
-  const { PostData } = props;
+const AskModifyForm = (props: any) => {
+  const { data, PostData } = props;
+  const [editTitle, setEditTitle] = useState<string>(data.title);
+  const [editBody, setEditBody] = useState<string>(data.content);
 
   const EditTitle = (e: any) => {
     setEditTitle(e.target.value);
@@ -36,14 +36,14 @@ const AskEditForm = (props: any) => {
           <Input
             className="TitleInput"
             placeholder={title.contents}
-            value={editTitle}
+            defaultValue={data.title}
             onChange={e => EditTitle(e)}
           />
         </Section>
         <Section className="BodySection">
           <Title>{body.title}</Title>
           <SubTitle>{body.subTitle}</SubTitle>
-          <EditBox EditBody={EditBody} />
+          <EditBox data={data.content} EditBody={EditBody} />
         </Section>
         <Section className="TagsSection">
           <Title>{tags.title}</Title>
@@ -55,7 +55,7 @@ const AskEditForm = (props: any) => {
   );
 };
 
-export default AskEditForm;
+export default AskModifyForm;
 
 const FormContainer = styled.div`
   background-color: white;
