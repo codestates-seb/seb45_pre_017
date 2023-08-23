@@ -2,20 +2,16 @@ import React from "react";
 import { styled } from "styled-components";
 
 import DummyImg from "../../asset/ContentViewForm-DummyProfile.jpeg";
-const dummyDate: string = "Sep 3, 2008 at 14:31";
 const dummyName: string = "mikeymo";
 
 const WriterProfile = (props: OwnProps) => {
-  const { contentCategory } = props;
-
-  const category: string =
-    contentCategory === "question" ? "asked" : "answered";
+  const { contentCategory, postDate } = props;
 
   return (
     <Container>
       <ContentInfo>
-        <span className="contentCategory">{category}</span>
-        <span className="registrationDate">{dummyDate}</span>
+        <span className="contentCategory">{contentCategory}</span>
+        <span className="registrationDate">{postDate}</span>
       </ContentInfo>
       <WriterInfo>
         <ProfileImg src={DummyImg} alt="Writer Profile Image" />
@@ -29,6 +25,7 @@ export default WriterProfile;
 
 interface OwnProps {
   contentCategory: string;
+  postDate?: string;
 }
 
 const Container = styled.div`

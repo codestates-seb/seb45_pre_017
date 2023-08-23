@@ -1,28 +1,48 @@
 import React from "react";
 import { styled } from "styled-components";
 
+import useGetComment from "../../hooks/useGetComment";
 import { EditCommentButton, DeleteCommentButton } from "./AdditionalButton";
 
-const Comment = (props: CommentProps) => {
-  const { text, writer, date } = props;
-  return (
-    <Container>
-      <Text>{text}</Text>
-      <Writer>{`- ${writer}`}</Writer>
-      <Date>{date}</Date>
-      <AdditionalButton>
-        <EditCommentButton />
-        <DeleteCommentButton />
-      </AdditionalButton>
-    </Container>
-  );
-};
+const Comment = ({ answerID }: { answerID: number }) => {
+  const userID: string = "1";
 
-interface CommentProps {
-  text: string;
-  writer: string;
-  date: string;
-}
+  const { commentData } = useGetComment(userID, answerID);
+
+  if (commentData) {
+    return (
+      <Container>
+        {commentData.map(data => (
+          <div key={data.commentId}>
+            <Text>{data.content}</Text>
+            <Writer>{`- ${data.name}`}</Writer>
+            <Date>{data.commentDate}</Date>
+            <AdditionalButton>
+              <EditCommentButton />
+              <DeleteCommentButton />
+            </AdditionalButton>
+          </div>
+        ))}
+      </Container>
+    );
+  }
+
+  if (!commentData) {
+    return (
+      <Container>
+        <Text></Text>
+        <Writer></Writer>
+        <Date></Date>
+        <AdditionalButton>
+          <EditCommentButton />
+          <DeleteCommentButton />
+        </AdditionalButton>
+      </Container>
+    );
+  }
+
+  return null;
+};
 
 const Container = styled.li`
   list-style: none;

@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
-import "react-quill/dist/quill.snow.css";
 
+import usePostAnswer from "../../hooks/usePostAnswer";
 import WriteForm from "./WriteForm";
 
 const title: string = "Your Answer";
 const buttonText: string = "Post Your Answer";
 
 const AnswerWriteForm = () => {
+  const [value, setValue] = useState<string>("");
+
+  const userID: string = "1";
+  const postID: string = "2";
+  const postMutation = usePostAnswer(userID, postID);
+
+  const postAnswerToSever = () => {
+    postMutation.mutate({ answerBody: value });
+    setValue("");
+  };
+
   return (
     <Container>
       <Title>{title}</Title>
-      <WriteForm />
-      <PostAnswerButton>{buttonText}</PostAnswerButton>
+      <WriteForm value={value} setValue={setValue} />
+      <PostAnswerButton onClick={postAnswerToSever}>
+        {buttonText}
+      </PostAnswerButton>
     </Container>
   );
 };

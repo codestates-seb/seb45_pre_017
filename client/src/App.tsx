@@ -21,7 +21,7 @@ function App() {
         <Wrapper>
           <Routes>
             <Route path="/" element={<Mainpage />} />
-            <Route path="/page/:votes" element={<QuestionContentPage />} />
+            <Route path="/posts/1" element={<QuestionContentPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/users/logout" element={<LogoutPage />} />
