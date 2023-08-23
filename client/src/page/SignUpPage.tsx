@@ -16,7 +16,7 @@ const Body = styled.body`
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: center;
+  justify-content: center;
   align-items: center;
   padding: 30px;
   background-color: #f1f2f3;
