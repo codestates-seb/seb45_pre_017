@@ -1,15 +1,15 @@
 spring:
   security:
     user:
-      name: myUsername
-      password: myPassword
+      name: ${SPRING_SECURITY_USER_NAME}
+      password: ${SPRING_SECURITY_USER_PASSWORD}
   application:
     name: demo
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://database-017.cjdmzjfnvqzm.ap-northeast-2.rds.amazonaws.com/stackoverflow_017
-    username: admin
-    password: qordpsem017~
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
   sql:
     init:
       platform: mysql
@@ -21,8 +21,8 @@ spring:
     open-in-view: false
 
 jwt:
-  secret: 0687bd30a2a1cc4f69e46ca9cbdad76ceda5305b660886690db3eeb15f309a86  # Consider using environment variables
-  expiration: 600000
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
 
 server:
   port: 8080
