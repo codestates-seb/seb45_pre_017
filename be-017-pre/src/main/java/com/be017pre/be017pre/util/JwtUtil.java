@@ -1,6 +1,7 @@
 package com.be017pre.be017pre.util;
 
 import com.be017pre.be017pre.user.entity.User;
+import com.be017pre.be017pre.user.service.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -46,13 +47,15 @@ public class JwtUtil {
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        if (userDetails instanceof User) {
-            User user = (User) userDetails;
-            claims.put("userId", user.getUserId());
-            claims.put("userName", user.getUserName());
+        if (userDetails instanceof UserDetailsImpl) {  // userDetails의 구체적인 타입을 확인
+            UserDetailsImpl userImpl = (UserDetailsImpl) userDetails;
+            claims.put("userId", userImpl.getId());
+            claims.put("userName", userImpl.getName());
+            claims.put("userEmail", userImpl.getEmail());
         }
         return createToken(claims, userDetails.getUsername());
     }
+
 
     private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject)
