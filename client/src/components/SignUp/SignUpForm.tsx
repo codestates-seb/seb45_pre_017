@@ -1,110 +1,103 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-// import { registerUser } from "./RegisterUser";
+import { registerUser } from "./RegisterUser";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
-  const [displayName, setDisplayName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isNameValid, setIsNameValid] = useState(true);
-  const [isEmailValid, setIsEmailValid] = useState(true);
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
-  const [nameErrorMessage, setNameErrorMessage] = useState("");
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
-    useState("");
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errorMessages, setErrorMessages] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
   const handleSignUp = async () => {
+    const { displayName, email, password, confirmPassword } = formData;
+
     validateName(displayName);
     validateEmail(email);
     validatePassword(password);
-    PasswordConfirmation(confirmPassword, password);
-    if (
-      isNameValid &&
-      isEmailValid &&
-      isPasswordValid &&
-      isConfirmPasswordValid
-    ) {
-      // 임시 테스트
-      const fakeUserData = {
-        username: displayName,
-        email: email,
-        password: password,
-      };
-      console.log("Simulated registration successful:", fakeUserData);
+    validatePasswordConfirmation(confirmPassword, password);
 
-      // API 연결 코드
-      // try {
-      //   const responseData = await registerUser(displayName, email, password);
-      //   // 회원가입 성공 시 처리
-      //   console.log("Registration successful:", responseData);
-      // } catch (error) {
-      //   // 회원가입 실패 시 처리
-      //   console.error("Registration failed:", error);
-      // }
+    if (Object.values(errorMessages).every(message => message === "")) {
+      try {
+        const userData = await registerUser(displayName, email, password);
+        console.log("User registered successfully:", userData);
+        navigate("/login");
+      } catch (error) {
+        console.error("Registration error:", error);
+        // 에러 처리를 수행할 수 있습니다.
+      }
     } else {
       console.log("Registration failed due to validation errors.");
     }
   };
 
-  //사용자 이름 유효성 검사
+  const updateFormData = (field, value) => {
+    setFormData(prevState => ({ ...prevState, [field]: value }));
+  };
+
   const validateName = name => {
     if (name === "") {
-      setIsNameValid(false);
-      setNameErrorMessage("Please enter a valid display name.");
+      setErrorMessages(prevState => ({
+        ...prevState,
+        displayName: "Please enter a valid display name.",
+      }));
     } else {
-      setIsNameValid(true);
-      setNameErrorMessage("");
+      setErrorMessages(prevState => ({ ...prevState, displayName: "" }));
     }
   };
 
-  //이메일 유효성 검사
   const validateEmail = email => {
     if (email === "") {
-      setIsEmailValid(false);
-      setEmailErrorMessage("Email cannot be empty.");
+      setErrorMessages(prevState => ({
+        ...prevState,
+        email: "Email cannot be empty.",
+      }));
     } else if (!emailRegex.test(email)) {
-      setIsEmailValid(false);
-      setEmailErrorMessage("Please enter a valid email address.");
+      setErrorMessages(prevState => ({
+        ...prevState,
+        email: "Please enter a valid email address.",
+      }));
     } else {
-      setIsEmailValid(true);
-      setEmailErrorMessage("");
+      setErrorMessages(prevState => ({ ...prevState, email: "" }));
     }
   };
 
-  //비밀번호 유효성 검사
   const validatePassword = password => {
     if (!passwordRegex.test(password)) {
-      setIsPasswordValid(false);
-      if (password.length < 8) {
-        setPasswordErrorMessage("Must contain at least 8 characters.");
-      } else if (!/[A-Za-z]/.test(password)) {
-        setPasswordErrorMessage("Please add at least one letter.");
-      } else if (!/\d/.test(password)) {
-        setPasswordErrorMessage("Please add at least one number.");
-      }
+      setErrorMessages(prevState => ({
+        ...prevState,
+        password: "Please enter a valid password.",
+      }));
     } else {
-      setIsPasswordValid(true);
-      setPasswordErrorMessage("");
+      setErrorMessages(prevState => ({ ...prevState, password: "" }));
     }
   };
 
-  //비밀번호 일치 검사
-  const PasswordConfirmation = (confirmPassword, password) => {
+  const validatePasswordConfirmation = (confirmPassword, password) => {
     if (password !== confirmPassword) {
-      setIsConfirmPasswordValid(false);
-      setConfirmPasswordErrorMessage("Passwords do not match.");
+      setErrorMessages(prevState => ({
+        ...prevState,
+        confirmPassword: "Passwords do not match.",
+      }));
     } else {
-      setIsConfirmPasswordValid(true);
-      setConfirmPasswordErrorMessage("");
+      setErrorMessages(prevState => ({ ...prevState, confirmPassword: "" }));
     }
   };
+
   return (
     <SignupForm>
       <FormContainer>
@@ -112,40 +105,44 @@ const SignUpForm = () => {
           <Label>Display Name</Label>
           <Input
             type="text"
-            value={displayName}
-            onChange={e => setDisplayName(e.target.value)}
+            value={formData.displayName}
+            onChange={e => updateFormData("displayName", e.target.value)}
           />
-          {!isNameValid && <ErrorMessage>{nameErrorMessage}</ErrorMessage>}
+          {errorMessages.displayName && (
+            <ErrorMessage>{errorMessages.displayName}</ErrorMessage>
+          )}
         </FormField>
         <FormField>
           <Label>Email</Label>
           <Input
             type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={e => updateFormData("email", e.target.value)}
           />
-          {!isEmailValid && <ErrorMessage>{emailErrorMessage}</ErrorMessage>}
+          {errorMessages.email && (
+            <ErrorMessage>{errorMessages.email}</ErrorMessage>
+          )}
         </FormField>
         <FormField>
           <Label>Password</Label>
           <Input
             type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={e => updateFormData("password", e.target.value)}
           />
-          {!isPasswordValid && (
-            <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
+          {errorMessages.password && (
+            <ErrorMessage>{errorMessages.password}</ErrorMessage>
           )}
         </FormField>
         <FormField>
           <Label>Confirm Password</Label>
           <Input
             type="password"
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
+            value={formData.confirmPassword}
+            onChange={e => updateFormData("confirmPassword", e.target.value)}
           />
-          {!isConfirmPasswordValid && (
-            <ErrorMessage>{confirmPasswordErrorMessage}</ErrorMessage>
+          {errorMessages.confirmPassword && (
+            <ErrorMessage>{errorMessages.confirmPassword}</ErrorMessage>
           )}
           <PasswordMessage>
             Passwords must contain at least eight characters, including at least

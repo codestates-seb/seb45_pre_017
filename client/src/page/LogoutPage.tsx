@@ -1,6 +1,5 @@
 import React from "react";
 import { styled } from "styled-components";
-
 import LogoutBox from "../components/LogoutBox/Index";
 
 const guideText: string = `Clicking “Log out” will log you out of the following
