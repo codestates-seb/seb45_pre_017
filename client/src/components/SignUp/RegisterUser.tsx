@@ -2,11 +2,14 @@ import axios, { AxiosError } from "axios";
 
 export const registerUser = async (displayName, email, password) => {
   try {
-    const response = await axios.post("/users/register", {
-      username: displayName,
-      password: password,
-      email: email,
-    });
+    const response = await axios.post(
+      "http://3.34.199.73:8080/users/register",
+      {
+        userName: displayName,
+        userEmail: email,
+        userPw: password,
+      },
+    );
 
     return response.data;
   } catch (error) {

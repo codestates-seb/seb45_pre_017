@@ -1,14 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const logoutButtonText: string = "Log out";
 const cancelButtonText: string = "Cancel";
 
 const Buttons = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    navigate("/");
+  };
+  const handleCancel = () => {
+    // 취소 버튼 클릭 시 메인 페이지로 이동
+    navigate("/");
+  };
+
   return (
     <Container>
-      <LogoutButton>{logoutButtonText}</LogoutButton>
-      <CancelButton>{cancelButtonText}</CancelButton>
+      <LogoutButton onClick={handleLogout}>{logoutButtonText}</LogoutButton>
+      <CancelButton onClick={handleCancel}>{cancelButtonText}</CancelButton>
     </Container>
   );
 };
