@@ -1,10 +1,19 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 
 const usePostAnswer = (userID: string, postID: string) => {
-  // 전달인자 수정해야 함
-  const postAnswer = useMutation((data: Data) =>
-    postData(userID, postID, data),
+  const queryClient = useQueryClient();
+
+  const postAnswer = useMutation(
+    (data: Data) => postData(userID, postID, data),
+
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(
+          `Answer-userID:${userID}-postID:${postID}`,
+        );
+      },
+    },
   );
 
   return postAnswer;

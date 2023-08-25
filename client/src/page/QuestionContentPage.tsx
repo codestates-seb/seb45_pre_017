@@ -15,7 +15,7 @@ const Title = QuestionContentTitle;
 
 const QuestionContentPage = () => {
   const userId: string = "1";
-  const postID: string = "2";
+  const postID: string = "3";
 
   const { questionLoad, questionError } = useGetQuestion(userId, postID);
 

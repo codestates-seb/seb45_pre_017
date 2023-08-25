@@ -1,24 +1,55 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
-/**
- * Edit 외에 Delete 기능도 필요하기 때문에 추후 수정 예정
- *  -> 작성자 본인만 Delete 가능해야 하므로 관련 로직 구현 필요함
- */
+import useDeleteQuestion from "../../hooks/useDeleteQuestion";
+import useDeleteAnswer from "../../hooks/useDeleteAnswer";
 
 const editButtonText: string = "Edit";
 const deleteButtonText: string = "Delete";
 
-const AdditonalButton = () => {
+const AdditonalButton = (props: OwnProps) => {
+  const { userID, answerID, contentCategory } = props;
+
+  // 임의의 값
+  const postID: string = "3";
+  console.log(contentCategory);
+  const naviagte = useNavigate();
+
+  const deleteQuestion = useDeleteQuestion(userID as number, postID);
+  const deleteAnswer = useDeleteAnswer(
+    userID as number,
+    postID,
+    answerID as number,
+  );
+
+  const deleteContentEvent = () => {
+    if (contentCategory === "question") {
+      deleteQuestion.mutate();
+      naviagte("/");
+    }
+    if (contentCategory === "answer") {
+      deleteAnswer.mutate();
+    }
+  };
+
   return (
     <Container>
       <EditButton>{editButtonText}</EditButton>
-      <DeleteButton>{deleteButtonText}</DeleteButton>
+      <DeleteButton onClick={deleteContentEvent}>
+        {deleteButtonText}
+      </DeleteButton>
     </Container>
   );
 };
 
 export default AdditonalButton;
+
+interface OwnProps {
+  userID?: number;
+  answerID?: number;
+  contentCategory: string;
+}
 
 const Container = styled.div`
   display: flex;

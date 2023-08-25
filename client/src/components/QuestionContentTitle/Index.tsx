@@ -9,7 +9,7 @@ const dummyName: string = "Asked";
 
 const QuestionContentTitle = () => {
   const userId: string = "1";
-  const postID: string = "2";
+  const postID: string = "3";
   const { questionData } = useGetQuestion(userId, postID);
   const { title, postDate } = questionData;
 

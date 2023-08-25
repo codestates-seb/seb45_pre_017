@@ -8,8 +8,6 @@ import CommentWriteForm from "./CommentWriteForm";
 const AnswerComment = ({ answerID }: { answerID: number }) => {
   const [writeForm, setWriteForm] = useState<boolean>(false);
 
-  console.log(answerID);
-
   const setWriteFormEvent = () => {
     setWriteForm(!writeForm);
   };

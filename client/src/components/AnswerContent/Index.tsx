@@ -8,7 +8,7 @@ import AnswerComment from "../AnswerComment/Index";
 
 const AnswerContent = () => {
   const userID: string = "1";
-  const postID: string = "2";
+  const postID: string = "1";
 
   const { answerData } = useGetAnswer(userID, postID);
 
